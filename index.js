@@ -11,6 +11,11 @@ app.use("/img", express.static(__dirname + "public/img"))
 app.use("/scss", express.static(__dirname + "public/scss"))
 
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html")
+})
+
+
 //listen
 const port = 4000;
 app.listen(port, () => {
