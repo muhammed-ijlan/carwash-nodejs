@@ -15,8 +15,12 @@ app.set("views", "./views")
 app.set("view engine", "ejs")
 
 
+//routes
 app.get("/", (req, res) => {
     res.render("index")
+})
+app.get("/login", (req, res) => {
+    res.render("login")
 })
 
 
