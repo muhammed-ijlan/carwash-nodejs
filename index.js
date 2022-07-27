@@ -16,13 +16,20 @@ app.set("view engine", "ejs")
 
 
 //routes
+//home route
 app.get("/", (req, res) => {
     res.render("index")
 })
+
+//login Route
 app.get("/login", (req, res) => {
     res.render("login")
 })
 
+//register ROute
+app.get("/register", (req, res) => {
+    res.render("register")
+})
 
 //listen
 const port = 4000;
