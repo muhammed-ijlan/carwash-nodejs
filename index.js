@@ -1,5 +1,6 @@
 //imports
 const express = require("express")
+const mongoose = require("mongoose")
 const app = express();
 
 // static files
@@ -30,6 +31,8 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
     res.render("register")
 })
+
+mongoose.connect()
 
 //listen
 const port = 4000;
