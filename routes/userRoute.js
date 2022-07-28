@@ -1,9 +1,11 @@
 //imports
 const router = require("express").Router()
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
+const CryptoJS = require("crypto-js");
 const User = require("../models/User")
 const verify = require("../verifyToken")
+
+
 
 //GET
 //home route
@@ -25,22 +27,27 @@ router.get("/register", (req, res) => {
 //login post route
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email, password: req.body.password })
-        if (!user) {
-            res.status(401).json("Wrong credentials!")
-        } else {
+        const user = await User.findOne({ email: req.body.email })
 
-            const accessToken = jwt.sign({
-                id: user._id
-            },
-                "secretmessage",
-                { expiresIn: "5d" }
-            )
-
-            const { ...info } = user._doc;
-
-            res.status(201).json({ ...info, accessToken })
+        if (user == null) {
+            return res.status(404).json("No user Found!")
         }
+
+        const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
+        const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
+
+        // originalPassword !== req.body.password && res.status(401).json("wrong Password or Email")
+        if (originalPassword !== req.body.password) {
+            return res.status(401).json("wrong password or email")
+        }
+
+        const accessToken = jwt.sign({
+            id: user._id
+        }, process.env.SECRET_KEY)
+
+        const { password, ...info } = user._doc;
+        res.status(200).json({ ...info, accessToken, password })
+
     } catch (err) {
         res.status(500).json(err)
     }
@@ -48,17 +55,17 @@ router.post("/login", async (req, res) => {
 })
 
 
-
-
 //register post route
 router.post("/register", async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
         const newUser = await User.create({
             name: req.body.name,
             email: req.body.email,
-            password: hashedPassword
+            password: CryptoJS.AES.encrypt(
+                req.body.password,
+                process.env.SECRET_KEY
+            ).toString()
 
         })
         res.status(201).json(newUser)

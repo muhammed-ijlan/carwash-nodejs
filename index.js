@@ -1,5 +1,6 @@
 //imports
-const express = require("express")
+const express = require("express");
+const flash = require("express-flash");
 const mongoose = require("mongoose")
 // const bodyParser = require("body-parser")
 const dotenv = require("dotenv").config()
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: false }))
 
 //set View engine
 app.set("view engine", "ejs")
+
 
 //Route
 app.use("/", userRoute)
