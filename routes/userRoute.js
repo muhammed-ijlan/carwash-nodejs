@@ -1,5 +1,6 @@
 //imports
 const router = require("express").Router()
+const jwt = require("jsonwebtoken")
 const User = require("../models/User")
 
 //routes
@@ -22,7 +23,16 @@ router.post("/login", async (req, res) => {
             res.status(401).json("user not found")
         } else {
 
-            res.status(201).json("succesfully login")
+            const accessToken = jwt.sign({
+                id: user._id
+            },
+                "secretmessage",
+                { expiresIn: "5d" }
+            )
+
+            const { ...info } = user._doc;
+
+            res.status(201).json({ ...info, accessToken })
         }
     } catch (err) {
         res.status(500).json(err)
