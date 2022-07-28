@@ -89,32 +89,26 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
 
-//input form
-// const form = document.getElementById("reg-form")
-// form.addEventListener("submit", registerUser)
+const form = document.getElementById("loginForm")
 
-// async function registerUser(event) {
-//     event.preventDefault();
+function signIn(event) {
+    event.preventDefault();
 
-//     const name = document.getElementsByClassName("nameInput").value
-//     const email = document.getElementsByClassName("emailInput").value
-//     const password = document.getElementsByClassName("passwordInput").value
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
 
-//     const result = await fetch("/register", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             name,
-//             email,
-//             password
-//         })
-//     }).then((res) => res.json())
-//     if (result.status === "ok") {
-//         alert("Successfully registered")
-//     } else {
-//         alert(result.error)
-//     }
+    const result = await fetch("/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    }).then(res => res.json())
+    console.log(result);
+    alert(result)
+}
 
-// }
+form.addEventListener("submit", signIn)

@@ -45,11 +45,15 @@ router.post("/login", async (req, res) => {
             id: user._id
         }, process.env.SECRET_KEY)
 
+
         const { password, ...info } = user._doc;
-        res.status(200).json({ ...info, accessToken, password })
+        // console.log(user._doc);
+
+        return res.status(200).redirect("/")
+
 
     } catch (err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 
 })
@@ -77,61 +81,6 @@ router.post("/register", async (req, res) => {
         res.status(500).json("User not created")
     }
 })
-
-
-
-
-
-
-// router.post("/register", async (req, res) => {
-
-//     const { name, email, password: plainTextPassword } = req.body;
-//     const password = await bcrypt.hash(plainTextPassword, 10)
-
-//     if (!plainTextPassword || typeof plainTextPassword !== "string") {
-//         return res.json({ status: "error", error: "Invalid Password" })
-//     }
-//     if (plainTextPassword.length < 5) {
-//         return res.json({ status: "error", error: "Password should be 6 characters" })
-//     }
-
-//     try {
-//         const newUser = await User.create({
-//             name,
-//             email,
-//             password
-//         })
-//         res.status(201).json(newUser)
-
-//     } catch (err) {
-
-//         if (err.code === 11000) {
-//             return res.json({ status: "error", error: "email already exists" })
-//         }
-//         throw err
-
-//     }
-
-// })
-
-
-
-// router.post("/register", async (req, res) => {
-
-//     const newUser = new User({
-//         name: req.body.name,
-//         email: req.body.email,
-//         password: req.body.password
-//     })
-
-//     try {
-//         const savedUser = await newUser.save();
-//         res.status(201).json(savedUser)
-//     } catch (err) {
-//         res.status(401).json(err)
-//     }
-// })
-
 
 
 module.exports = router;
