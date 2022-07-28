@@ -15,6 +15,7 @@ app.use("/js", express.static(__dirname + "public/js"))
 app.use("/img", express.static(__dirname + "public/img"))
 app.use("/scss", express.static(__dirname + "public/scss"))
 
+//body parser setup
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -22,7 +23,8 @@ app.use(bodyParser.json());
 app.set("views", "./views")
 app.set("view engine", "ejs")
 
-app.use("/auth", userRoute)
+//Route
+app.use("/", userRoute)
 
 //mongoose connection
 mongoose.connect(process.env.MONGO_URL, {
