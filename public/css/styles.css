@@ -629,7 +629,7 @@ body.dark-theme {
 .login-form-1 {
   padding: 9%;
   margin-left: 25%;
-  background: var(--first-color);
+  background: var(--text-color);
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 .login-form-1 h3 {
