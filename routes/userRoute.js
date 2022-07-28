@@ -2,11 +2,12 @@
 const router = require("express").Router()
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
+const verify = require("../verifyToken")
 
 //routes
 
 //home route
-router.get("/", (req, res) => {
+router.get("/", verify, (req, res) => {
     res.render("index")
 })
 
@@ -20,7 +21,7 @@ router.post("/login", async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email, password: req.body.password })
         if (!user) {
-            res.status(401).json("user not found")
+            res.status(401).json("Wrong credentials!")
         } else {
 
             const accessToken = jwt.sign({
