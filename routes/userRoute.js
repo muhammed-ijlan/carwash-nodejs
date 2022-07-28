@@ -1,12 +1,11 @@
 //imports
 const router = require("express").Router()
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcrypt")
 const User = require("../models/User")
 const verify = require("../verifyToken")
 
-//routes
-
+//GET
 //home route
 router.get("/", (req, res) => {
     res.render("index")
@@ -17,6 +16,12 @@ router.get("/login", (req, res) => {
     res.render("login")
 })
 
+//register get ROute
+router.get("/register", (req, res) => {
+    res.render("register")
+})
+
+//POST
 //login post route
 router.post("/login", async (req, res) => {
     try {
@@ -42,44 +47,65 @@ router.post("/login", async (req, res) => {
 
 })
 
-//register get ROute
-router.get("/register", (req, res) => {
-    res.render("register")
-})
 
 
 
 //register post route
 router.post("/register", async (req, res) => {
-
-    const { name, email, password: plainTextPassword } = req.body;
-    const password = await bcrypt.hash(plainTextPassword, 10)
-
-    if (!plainTextPassword || typeof plainTextPassword !== "string") {
-        return res.json({ status: "error", error: "Invalid Password" })
-    }
-    if (plainTextPassword.length < 5) {
-        return res.json({ status: "error", error: "Password should be 6 characters" })
-    }
-
     try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
         const newUser = await User.create({
-            name,
-            email,
-            password
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword
+
         })
-        console.log("user created successfully", newUser);
+        res.status(201).json(newUser)
 
     } catch (err) {
-
         if (err.code === 11000) {
-            return res.json({ status: "error", error: "email already exists" })
+            return res.status(400).json("something already exist")
         }
-        throw err
-
+        res.status(500).json("User not created")
     }
-    res.json({ status: "ok" })
 })
+
+
+
+
+
+
+// router.post("/register", async (req, res) => {
+
+//     const { name, email, password: plainTextPassword } = req.body;
+//     const password = await bcrypt.hash(plainTextPassword, 10)
+
+//     if (!plainTextPassword || typeof plainTextPassword !== "string") {
+//         return res.json({ status: "error", error: "Invalid Password" })
+//     }
+//     if (plainTextPassword.length < 5) {
+//         return res.json({ status: "error", error: "Password should be 6 characters" })
+//     }
+
+//     try {
+//         const newUser = await User.create({
+//             name,
+//             email,
+//             password
+//         })
+//         res.status(201).json(newUser)
+
+//     } catch (err) {
+
+//         if (err.code === 11000) {
+//             return res.json({ status: "error", error: "email already exists" })
+//         }
+//         throw err
+
+//     }
+
+// })
 
 
 

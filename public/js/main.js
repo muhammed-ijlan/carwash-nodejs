@@ -90,31 +90,31 @@ themeButton.addEventListener('click', () => {
 })
 
 //input form
-const form = document.getElementById("reg-form")
-form.addEventListener("submit", registerUser)
+// const form = document.getElementById("reg-form")
+// form.addEventListener("submit", registerUser)
 
-async function registerUser(event) {
-    event.preventDefault();
+// async function registerUser(event) {
+//     event.preventDefault();
 
-    const name = document.getElementsByClassName("nameInput").value
-    const email = document.getElementsByClassName("emailInput").value
-    const password = document.getElementsByClassName("passwordInput").value
+//     const name = document.getElementsByClassName("nameInput").value
+//     const email = document.getElementsByClassName("emailInput").value
+//     const password = document.getElementsByClassName("passwordInput").value
 
-    const result = await fetch("/register", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name,
-            email,
-            password
-        })
-    }).then((res) => res.json())
-    if (result.status === "ok") {
-        alert("Successfully registered")
-    } else {
-        alert(result.error)
-    }
+//     const result = await fetch("/register", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             name,
+//             email,
+//             password
+//         })
+//     }).then((res) => res.json())
+//     if (result.status === "ok") {
+//         alert("Successfully registered")
+//     } else {
+//         alert(result.error)
+//     }
 
-}
+// }

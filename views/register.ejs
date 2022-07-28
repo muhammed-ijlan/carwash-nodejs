@@ -17,7 +17,7 @@
     <div class="container login-container">
         <div class="row">
             <div class="col-md-4 login-form-1">
-                <form id="reg-form" onsubmit="registerUser()">
+                <form id="reg-form" method="POST" action="/register">
                     <h3>REGISTER</h3>
                     <div class="form-group">
                         <input type="text" class="form-control nameInput" placeholder="Your Name *" name="name"
@@ -32,7 +32,7 @@
                             name="password" value="" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit btn btn-dark" value="Register" />
+                        <button type="submit" class="btnSubmit btn btn-dark">Register</button>
                     </div>
                     <div class="form-group">
                         <a href="/login" class="btnForgetPwd">Click Here to Login</a><br>

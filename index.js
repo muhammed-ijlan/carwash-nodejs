@@ -1,7 +1,7 @@
 //imports
 const express = require("express")
 const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
+// const bodyParser = require("body-parser")
 const dotenv = require("dotenv").config()
 const app = express();
 const userRoute = require("./routes/userRoute")
@@ -14,11 +14,12 @@ app.use("/img", express.static(__dirname + "public/img"))
 app.use("/scss", express.static(__dirname + "public/scss"))
 
 //body parser setup
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+
+app.use(express.urlencoded({ extended: false }))
 
 //set View engine
-app.set("views", "./views")
 app.set("view engine", "ejs")
 
 //Route
