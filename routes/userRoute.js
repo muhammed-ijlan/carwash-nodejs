@@ -1,100 +1,99 @@
-//imports
-const router = require("express").Router()
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
-const User = require("../models/User")
-const verify = require("../verifyToken")
-const passport = require("passport")
+// // //imports
+// const router = require("express").Router()
+// const bcrypt = require("bcrypt")
+// const User = require("../models/User")
+// const passport = require("passport")
+
+// const localStratery = require("passport-local").Strategy
 
 
-const initializePassport = require("../passport-config")
+// const initializePassport = require("../passport-config")
 
-initializePassport(passport,
-    email => users.find(user => user.email == email),
-    id => users.find(user => user.id === id)
-)
+// initializePassport(passport, User.findOne({ email: req.body.email })
+// )
 
+// const users = []
 
+// // GET
+// // home route
+// router.get("/", (req, res) => {
+//     res.render("index")
+// })
+// router.get("/", (req, res) => {
+//     res.render("index")
+// })
 
-const users = []
+// //login Route
+// router.get("/login", (req, res) => {
+//     res.render("login")
+// })
 
-//GET
-//home route
-router.get("/", checkAuthenticated, (req, res) => {
-    res.render("index")
-})
+// //register get ROute
+// router.get("/register", (req, res) => {
+//     res.render("register")
+// })
 
-//login Route
-router.get("/login", checkNotAuthenticated, (req, res) => {
-    res.render("login")
-})
+// // POST
 
-//register get ROute
-router.get("/register", checkNotAuthenticated, (req, res) => {
-    res.render("register")
-})
+// // login post route
+// router.post("/login", passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/login",
+//     failureFlash: true,
 
-//POST
-
-//login post route
-router.post("/login", checkNotAuthenticated, passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-
-}))
-
-
-//register post route
-router.post("/register", checkNotAuthenticated, async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        })
-        res.redirect("/login")
-
-    } catch (err) {
-        res.redirect("/register")
-    }
-    console.log(users);
-})
-
-// LOGOUT
-router.delete('/logout', function (req, res, next) {
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        res.redirect('/');
-    });
-});
-
-/////////////////////////////////////////////////////////////////////////////
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-
-    return res.redirect("/login")
-}
-
-function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return res.redirect("/")
-    }
-    next();
-}
+// }))
 
 
+// // register post route
+// router.post("/register", async (req, res) => {
+//     try {
+//         const hashedPassword = await bcrypt.hash(req.body.password, 10)
+//         const newUser = await User.create({
+//             name: req.body.name,
+//             email: req.body.email,
+//             password: hashedPassword
+//         })
+//         console.log(newUser);
+
+//         res.redirect("/login")
+
+//     } catch (err) {
+//         res.redirect("/register")
+//     }
+// })
+
+// // LOGOUT
+// router.delete('/logout', function (req, res, next) {
+//     req.logout(function (err) {
+//         if (err) { return next(err); }
+//         res.redirect('/');
+//     });
+// });
+
+// ///////////////////////////////////////////////////////////////////////////
+// // MIDDLEWARE
+// function checkAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     return res.redirect("/login")
+// }
+
+// function checkNotAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return res.redirect("/")
+//     }
+//     next();
+// }
 
 
 
 
 
 
-//login
+
+
+// // login
 // router.post("/login", async (req, res) => {
 //     try {
 //         const user = await User.findOne({ email: req.body.email })
@@ -106,7 +105,7 @@ function checkNotAuthenticated(req, res, next) {
 //         const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
 //         const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-//         // originalPassword !== req.body.password && res.status(401).json("wrong Password or Email")
+        // originalPassword !== req.body.password && res.status(401).json("wrong Password or Email")
 //         if (originalPassword !== req.body.password) {
 //             return res.status(401).json("wrong password or email")
 //         }
@@ -128,7 +127,7 @@ function checkNotAuthenticated(req, res, next) {
 
 // })
 
-//register
+// register
 
 
 
@@ -155,4 +154,4 @@ function checkNotAuthenticated(req, res, next) {
 // })
 
 
-module.exports = router;
+// module.exports = router;
