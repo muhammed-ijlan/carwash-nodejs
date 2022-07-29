@@ -89,26 +89,26 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
 
-const form = document.getElementById("loginForm")
+// const form = document.getElementById("loginForm")
 
-function signIn(event) {
-    event.preventDefault();
+// function signIn(event) {
+//     event.preventDefault();
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+//     const email = document.getElementById("loginEmail").value;
+//     const password = document.getElementById("loginPassword").value;
 
-    const result = await fetch("/register", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email,
-            password
-        })
-    }).then(res => res.json())
-    console.log(result);
-    alert(result)
-}
+//     const result = await fetch("/register", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             email,
+//             password
+//         })
+//     }).then(res => res.json())
+//     console.log(result);
+//     alert(result)
+// }
 
-form.addEventListener("submit", signIn)
+// form.addEventListener("submit", signIn)

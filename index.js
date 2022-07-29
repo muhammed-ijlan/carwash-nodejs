@@ -1,11 +1,14 @@
 //imports
 const express = require("express");
-const flash = require("express-flash");
 const mongoose = require("mongoose")
 // const bodyParser = require("body-parser")
 const dotenv = require("dotenv").config()
 const app = express();
 const userRoute = require("./routes/userRoute")
+const flash = require("express-flash")
+const session = require("express-session");
+const passport = require("passport");
+const methodeOverride = require("method-override")
 
 // static files
 app.use(express.static("public"))
@@ -20,9 +23,20 @@ app.use("/scss", express.static(__dirname + "public/scss"))
 
 app.use(express.urlencoded({ extended: false }))
 
+app.use(flash())
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(methodeOverride("_method"))
 //set View engine
 app.set("view engine", "ejs")
-
 
 //Route
 app.use("/", userRoute)

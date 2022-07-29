@@ -46,7 +46,10 @@
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="/login" class="button button__header">Login</a>
+            <!-- <a href="/login" class="button button__header">Logout</a> -->
+            <form action="/logout?_method=DELETE" method="POST">
+                <button class="button button__header" type="submit">Logout</button>
+            </form>
         </nav>
     </header>
 
