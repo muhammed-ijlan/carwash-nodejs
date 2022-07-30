@@ -147,7 +147,7 @@ app.post("/login", passport.authenticate("local", {
     failureFlash: true,
 }))
 
-app.get("/book", (req, res) => {
+app.get("/book", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name, email: req.user.email })
 })
 
