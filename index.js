@@ -38,7 +38,7 @@ app.use(session({
 
 app.use(methodeOverride("_method"))
 
-//Route
+
 // app.use("/", userRoute)
 
 //mongoose connection
@@ -63,6 +63,7 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+/////////////////USERROUTES/////////////
 
 const authenticateUser = async (email, password, done) => {
     const user = await User.findOne({ email })
@@ -126,7 +127,6 @@ app.delete('/logout', function (req, res, next) {
 app.post("/register", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 2)
-
         const newUser = await User.create({
             name: req.body.name,
             email: req.body.email,
@@ -145,14 +145,11 @@ app.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login?error=true",
     failureFlash: true,
-
-
 }))
 
-
-
-
-
+app.get("/book", (req, res) => {
+    res.render("services", { name: req.user.name, email: req.user.email })
+})
 
 //listen
 const port = 4000;
