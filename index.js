@@ -1,7 +1,7 @@
+require("dotenv").config()
 //imports
 const express = require("express");
 const mongoose = require("mongoose")
-const dotenv = require("dotenv").config()
 const User = require("./models/User")
 
 const app = express();
@@ -16,6 +16,7 @@ const LocalStrategy = require("passport-local").Strategy
 const bcrypt = require("bcrypt");
 const Book = require("./models/Book");
 
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 //set View engine
 app.set("view engine", "ejs")
@@ -28,6 +29,7 @@ app.use("/img", express.static(__dirname + "public/img"))
 app.use("/scss", express.static(__dirname + "public/scss"))
 
 app.use(express.json())
+
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
 app.use(session({
@@ -48,6 +50,19 @@ mongoose.connect(process.env.MONGO_URL_DEMO, {
     useUnifiedTopology: true
 }).then(() => console.log("DB connected"))
     .catch((err) => console.log(err))
+
+
+//STRIPE ITEMS
+const storeItems = new Map([
+    [1, { priceInCents: 1000, name: "Bike Wash" }],
+    [2, { priceInCents: 3000, name: "Car Wash" }]
+])
+
+
+
+
+
+
 
 
 // passport config
@@ -149,7 +164,7 @@ app.post("/login", passport.authenticate("local", {
 }))
 
 //BOOK ROUTE
-app.get("/book", isLoggedIn, (req, res) => {
+app.get("/services", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name, email: req.user.email })
 })
 

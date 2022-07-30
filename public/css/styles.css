@@ -255,6 +255,7 @@ body.dark-theme {
 
 /*=============== BUTTONS ===============*/
 .button {
+  cursor: pointer;
   display: inline-block;
   background-color: var(--first-color);
   color: #1a1a1a;
@@ -778,7 +779,8 @@ form .book-btn {
   margin: 35px 0;
 }
 
-form .book-btn input {
+form .book-btn button {
+  text-align: center;
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -792,7 +794,7 @@ form .book-btn input {
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-form .button input:hover {
+form .book-btn input:hover {
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }

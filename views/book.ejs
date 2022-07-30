@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<title>Book a Wash</title>
+
+<body>
+    <%- include("nav") %>
+
+        <section class="bookSection">
+
+            <div class="book-container">
+                <div class="title">Book a Wash</div>
+                <div class="content">
+                    <form action="/book" method="POST">
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">Your Name</span>
+                                <input type="text" name="name" placeholder="Enter your name *" required
+                                    value="<%= name %>">
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Vehicle Number</span>
+                                <input type="text" name="vehicleNumber" placeholder="Enter Vehicle Number *" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Email</span>
+                                <input type="email" name="email" placeholder="Enter your email *" required
+                                    value="<%= email %>">
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Your Location</span>
+                                <input type="text" name="location" placeholder="Enter your Location *" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Phone Number</span>
+                                <input type="text" name="number" placeholder="Enter your number *" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Enter Your Message</span>
+                                <input type="text" name="message" placeholder="Enter Your Message">
+                            </div>
+                        </div>
+                        <div class="gender-details">
+                            <input type="radio" value="Car" name="vehicleType" id="dot-1">
+                            <input type="radio" value="Bike" name="vehicleType" id="dot-2">
+                            <span class="gender-title">Vehicle</span>
+                            <div class="category">
+                                <label for="dot-1">
+                                    <span class="dot one"></span>
+                                    <span class="gender">Car</span>
+                                </label>
+                                <label for="dot-2">
+                                    <span class="dot two"></span>
+                                    <span class="gender">Bike</span>
+                                </label>
+                            </div>
+                            <div class="book-btn">
+                                <button id="checkoutBtn" type="">Checkout</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+</body>
+
+</html>
