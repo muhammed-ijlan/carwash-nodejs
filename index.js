@@ -13,7 +13,8 @@ const passport = require("passport");
 const methodeOverride = require("method-override")
 
 const LocalStrategy = require("passport-local").Strategy
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const Book = require("./models/Book");
 
 
 //set View engine
@@ -153,7 +154,24 @@ app.get("/book", isLoggedIn, (req, res) => {
 })
 
 // BOOK POST ROUTE
+app.post("/book", isLoggedIn, async (req, res) => {
+    try {
+        const newBooking = await Book.create({
+            name: req.body.name,
+            email: req.body.email,
+            number: req.body.email,
+            location: req.body.location,
+            vehicleNumber: req.body.vehicleNumber,
+            message: req.body.message,
+            vehicleType: req.body.vehicleType
+        })
+        console.log("new Booking", newBooking);
+        res.redirect("/")
 
+    } catch (err) {
+        res.send("ERROR")
+    }
+})
 
 
 
