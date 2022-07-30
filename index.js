@@ -18,6 +18,8 @@ const Book = require("./models/Book");
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
+
+
 //set View engine
 app.set("view engine", "ejs")
 
@@ -54,15 +56,8 @@ mongoose.connect(process.env.MONGO_URL_DEMO, {
 
 //STRIPE ITEMS
 const storeItems = new Map([
-    [1, { priceInCents: 1000, name: "Bike Wash" }],
-    [2, { priceInCents: 3000, name: "Car Wash" }]
+    [1, { priceInCents: 10000, name: "Car / Bike Washing" }],
 ])
-
-
-
-
-
-
 
 
 // passport config
@@ -163,9 +158,45 @@ app.post("/login", passport.authenticate("local", {
     failureFlash: true,
 }))
 
-//BOOK ROUTE
+//services stripe routes
 app.get("/services", isLoggedIn, (req, res) => {
-    res.render("services", { name: req.user.name, email: req.user.email })
+    res.render("services", { name: req.user.name })
+})
+
+app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            mode: "payment",
+            line_items: req.body.items.map(item => {
+                const storeItem = storeItems.get(item.id)
+                return {
+                    price_data: {
+                        currency: "inr",
+                        product_data: {
+                            name: storeItem.name,
+                        },
+                        unit_amount: storeItem.priceInCents,
+                    },
+                    quantity: item.quantity,
+                }
+            }),
+            success_url: `${process.env.SERVER_URL}/book`,
+            cancel_url: `${process.env.SERVER_URL}/`,
+        })
+        res.json({ url: session.url })
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+
+
+
+//BOOK ROUTE
+app.get("/book", isLoggedIn, (req, res) => {
+    res.render("book", { name: req.user.name, email: req.user.email })
 })
 
 // BOOK POST ROUTE
@@ -184,7 +215,7 @@ app.post("/book", isLoggedIn, async (req, res) => {
         res.redirect("/")
 
     } catch (err) {
-        res.send("ERROR")
+        res.redirect("/")
     }
 })
 
