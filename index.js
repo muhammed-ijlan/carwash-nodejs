@@ -56,7 +56,7 @@ mongoose.connect(process.env.MONGO_URL_DEMO, {
 
 //STRIPE ITEMS
 const storeItems = new Map([
-    [1, { priceInCents: 10000, name: "Car / Bike Washing" }],
+    [1, { priceInCents: 50000, name: "Car / Bike Washing" }],
 ])
 
 
