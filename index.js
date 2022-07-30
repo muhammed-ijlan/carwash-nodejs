@@ -147,9 +147,15 @@ app.post("/login", passport.authenticate("local", {
     failureFlash: true,
 }))
 
+//BOOK ROUTE
 app.get("/book", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name, email: req.user.email })
 })
+
+// BOOK POST ROUTE
+
+
+
 
 //listen
 const port = 4000;
