@@ -19,54 +19,15 @@
 
 <body>
     <!--=============== HEADER ===============-->
-    <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">Mobile Car Wash</a>
+    <%- include("nav")%>
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link active-link">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#about" class="nav__link">About us</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#services" class="nav__link">Services</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#contact" class="nav__link">Contact us</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#" class="nav__link">
-                            <b>
-                                <%= name%>
-                            </b>'s Profile
-                        </a>
-                    </li>
+        <main class="main">
+            <!--=============== HOME ===============-->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
 
-                    <i class='bx bx-toggle-left change-theme' id="theme-button"></i>
-                </ul>
-            </div>
-
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-grid-alt'></i>
-            </div>
-
-            <!-- <a href="/login" class="button button__header">Logout</a> -->
-            <form action="/logout?_method=DELETE" method="POST">
-                <button class="button button__header" type="submit">Logout</button>
-            </form>
-        </nav>
-    </header>
-
-    <main class="main">
-        <!--=============== HOME ===============-->
-        <section class="home section" id="home">
-            <div class="home__container container grid">
-
-                <!-- svg -->
-                <!-- <svg class="svg__img svg__color home__img" viewBox="0 0 554 325" xmlns="http://www.w3.org/2000/svg"
+                    <!-- svg -->
+                    <!-- <svg class="svg__img svg__color home__img" viewBox="0 0 554 325" xmlns="http://www.w3.org/2000/svg"
                     style="display: none;">
                     <g clip-path="url(#clip0)">
                         <path d="M505.712 156.064H423.293V219.381H505.712V156.064Z" fill="#F5F5F5" />
@@ -1045,30 +1006,31 @@
                     </defs>
                 </svg> -->
 
-                <div class="home__data">
-                    <h1 class="home__title">Movable Auto <br> Spa is now near you..</h1>
-                    <p class="home__description">Movable auto spa is now near you book your Vehicle now itself..</p>
-                    <a href="#" class="button">Wash My Vehicle</a>
+                    <div class="home__data">
+                        <h1 class="home__title">Movable Auto <br> Spa is now near you..</h1>
+                        <p class="home__description">Movable auto spa is now near you book your Vehicle now itself..</p>
+                        <a href="#" class="button">Wash My Vehicle</a>
 
+                    </div>
+                    <div class="img">
+                        <img src="img/Car wash-bro.svg" alt="">
+                    </div>
                 </div>
-                <div class="img">
-                    <img src="img/Car wash-bro.svg" alt="">
-                </div>
-            </div>
-        </section>
-        <!--=============== ABOUT ===============-->
-        <section class="about section container" id="about">
+            </section>
+            <!--=============== ABOUT ===============-->
+            <section class="about section container" id="about">
 
-            <div class="about__container grid">
-                <img src="img/About us page-cuate.svg" alt="">
-                <div class="about__data">
-                    <h2 class="section__title-center">Find Out A Little More <br> About Us</h2>
-                    <p class="about__description">We are a company dedicated for wash your vehicle at your location or
-                        at your home or to the place where you are now, with the best quality ever we need.
-                    </p>
-                </div>
+                <div class="about__container grid">
+                    <img src="img/About us page-cuate.svg" alt="">
+                    <div class="about__data">
+                        <h2 class="section__title-center">Find Out A Little More <br> About Us</h2>
+                        <p class="about__description">We are a company dedicated for wash your vehicle at your location
+                            or
+                            at your home or to the place where you are now, with the best quality ever we need.
+                        </p>
+                    </div>
 
-                <!-- <svg class="svg__ig svg__color about__img" viewBox="0 0 312 236" xmlns="http:/www.w3.org/2000/svg"
+                    <!-- <svg class="svg__ig svg__color about__img" viewBox="0 0 312 236" xmlns="http:/www.w3.org/2000/svg"
                     style="display: none;">
                     <g clip-path="url(#clip0)">
                         <path class="svg__blob" fill-rule="evenodd" clip-rule="evenodd"
@@ -1494,25 +1456,25 @@
                         </clipPath>
                     </defs>
                 </svg> -->
-            </div>
-        </section>
-
-
-
-
-
-
-
-        <!--=============== SECURITY ===============-->
-        <section class="security section container">
-            <div class="security__container grid">
-                <div class="security__data">
-                    <h2 class="section__title-center">Your Safety Is <br> Important</h2>
-                    <p class="security__description">Your order is always saftey and your payment is always secure.
-                    </p>
                 </div>
-                <img src="img/Security-cuate.svg" alt="">
-                <!-- <svg class="svg__img svg__color" viewBox="0 0 312 221" xmlns="http://www.w3.org/2000/svg"
+            </section>
+
+
+
+
+
+
+
+            <!--=============== SECURITY ===============-->
+            <section class="security section container">
+                <div class="security__container grid">
+                    <div class="security__data">
+                        <h2 class="section__title-center">Your Safety Is <br> Important</h2>
+                        <p class="security__description">Your order is always saftey and your payment is always secure.
+                        </p>
+                    </div>
+                    <img src="img/Security-cuate.svg" alt="">
+                    <!-- <svg class="svg__img svg__color" viewBox="0 0 312 221" xmlns="http://www.w3.org/2000/svg"
                     style="display: none;">
                     <path class="svg__blob" fill-rule="evenodd" clip-rule="evenodd"
                         d="M146.137 4.22643C177.748 -2.97581 206.274 23.1576 229.992 40.5258C251.017 55.9222 262.978 75.8309 272.499 96.7598C282.192 118.066 300.281 142.538 285.25 161.993C269.962 181.783 230.296 177.103 202.881 186.874C182.644 194.086 167.895 207.639 146.137 211.573C119.351 216.416 86.2133 225.465 65.5354 211.707C44.5361 197.736 61.8497 170.746 54.1954 150.402C47.0089 131.301 13.4763 116.078 22.5437 97.4402C31.6999 78.6197 73.623 86.0355 92.3992 71.8745C117.647 52.8331 111.996 12.005 146.137 4.22643Z" />
@@ -1950,17 +1912,17 @@
                         d="M163.36 212.661H159.431V207.107H163.36V212.661ZM159.455 212.637H163.336V207.131H159.455V212.637Z"
                         fill="#263238" />
                 </svg> -->
-            </div>
-        </section>
+                </div>
+            </section>
 
-        <!--=============== SERVICES ===============-->
-        <section class="services section container" id="services">
-            <h2 class="section__title">Here is the Services We <br> Offer</h2>
-            <div class="services__container grid">
-                <div class="services__data">
-                    <h3 class="services__subtitle">Bike Washing</h3>
-                    <img src="img/Vehicle Sale-rafiki.svg" alt="">
-                    <!-- <svg class="svg__color services__img" viewBox="0 0 135 94" xmlns="http://www.w3.org/2000/svg"
+            <!--=============== SERVICES ===============-->
+            <section class="services section container" id="services">
+                <h2 class="section__title">Here is the Services We <br> Offer</h2>
+                <div class="services__container grid">
+                    <div class="services__data">
+                        <h3 class="services__subtitle">Bike Washing</h3>
+                        <img src="img/Vehicle Sale-rafiki.svg" alt="">
+                        <!-- <svg class="svg__color services__img" viewBox="0 0 135 94" xmlns="http://www.w3.org/2000/svg"
                         style="display: none;">
                         <g clip-path="url(#clip0)">
                             <path class="svg__blob" fill-rule="evenodd" clip-rule="evenodd"
@@ -2659,53 +2621,54 @@
                             </clipPath>
                         </defs>
                     </svg> -->
-                    <p class="services__description">We wash your bike and make it shiny</p>
-                    <div>
-                        <a href="#" class="button button-link">Wash My Bike</a>
+                        <p class="services__description">We wash your bike and make it shiny</p>
+                        <div>
+                            <a href="#" class="button button-link">Wash My Bike</a>
+                        </div>
+                    </div>
+
+                    <div class="services__data">
+                        <h3 class="services__subtitle">Car washing</h3>
+                        <img src="img/Car finance-pana (1).svg" alt="">
+
+                        <p class="services__description">We Wash your car at your home or at the place where your
+                            location.
+                        </p>
+                        <div>
+                            <a href="#" class="button button-link">Wash My Car</a>
+                        </div>
+                    </div>
+
+                    <div class="services__data">
+                        <h3 class="services__subtitle">Online Payment available</h3>
+                        <img src="img/Successful purchase-cuate.svg" alt="">
+                        <p class="services__description">In our app you can pay online and book your wash>
+                        <div>
+                            <a href="#" class="button button-link">Pay online</a>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="services__data">
-                    <h3 class="services__subtitle">Car washing</h3>
-                    <img src="img/Car finance-pana (1).svg" alt="">
-
-                    <p class="services__description">We Wash your car at your home or at the place where your location.
-                    </p>
-                    <div>
-                        <a href="#" class="button button-link">Wash My Car</a>
+            <!--=============== APP ===============-->
+            <section class="app section container">
+                <div class="app__container grid">
+                    <div class="app__data">
+                        <h2 class="section__title-center">Watch Your Order History <br> At Any Time</h2>
+                        <p class="app__description">With our app you can view the route of your order, from our local
+                            headquarters to the
+                            place where you are. Look for the app now!</p>
+                        <div class="app__buttons">
+                            <a href="#" class="button button-flex">
+                                <i class='bx bxl-apple button__icon'></i> App Store
+                            </a>
+                            <a href="#" class="button button-flex">
+                                <i class='bx bxl-play-store button__icon'></i> Google Play
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="services__data">
-                    <h3 class="services__subtitle">Online Payment available</h3>
-                    <img src="img/Successful purchase-cuate.svg" alt="">
-                    <p class="services__description">In our app you can pay online and book your wash>
-                    <div>
-                        <a href="#" class="button button-link">Pay online</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--=============== APP ===============-->
-        <section class="app section container">
-            <div class="app__container grid">
-                <div class="app__data">
-                    <h2 class="section__title-center">Watch Your Order History <br> At Any Time</h2>
-                    <p class="app__description">With our app you can view the route of your order, from our local
-                        headquarters to the
-                        place where you are. Look for the app now!</p>
-                    <div class="app__buttons">
-                        <a href="#" class="button button-flex">
-                            <i class='bx bxl-apple button__icon'></i> App Store
-                        </a>
-                        <a href="#" class="button button-flex">
-                            <i class='bx bxl-play-store button__icon'></i> Google Play
-                        </a>
-                    </div>
-                </div>
-
-                <!-- <svg class="svg__img svg__color app__img" viewBox="0 0 312 256" xmlns="http://www.w3.org/2000/svg">
+                    <!-- <svg class="svg__img svg__color app__img" viewBox="0 0 312 256" xmlns="http://www.w3.org/2000/svg">
                     <path class="svg__blob" fill-rule="evenodd" clip-rule="evenodd"
                         d="M145.125 18.6078C173.354 14.4016 203.149 28.173 222.745 42.8809C241.011 56.5901 234.19 78.9132 247.231 95.242C259.932 111.145 288.188 119.064 297.22 136.13C307.83 156.177 321.738 182.536 302.149 199.011C281.424 216.442 238.718 204.35 207.757 211.374C184.859 216.569 168.387 230.286 145.125 234.636C116.976 239.901 85.3942 248.272 59.396 239.121C33.4587 229.992 22.121 207.969 14.2075 188.556C7.22755 171.433 18.9753 153.892 17.413 136.13C15.7174 116.855 -10.3869 96.1299 4.64775 79.8762C19.9226 63.363 60.6879 73.9034 84.6339 63.4594C110.054 52.3727 115.767 22.982 145.125 18.6078Z" />
                     <path d="M104.316 172.57H60.8807V254.928H104.316V172.57Z" fill="#E0E0E0" />
@@ -3290,90 +3253,92 @@
                         d="M196.142 70.3471C196.892 68.867 197.972 67.5781 199.298 66.5794C200.624 65.5807 202.161 64.8987 203.791 64.5857C205.422 64.2726 207.103 64.3369 208.705 64.7735C210.307 65.2101 211.787 66.0075 213.033 67.1045C213.814 65.549 214.964 64.2088 216.384 63.2011C217.804 62.1935 219.45 61.5494 221.177 61.3252C222.904 61.101 224.66 61.3036 226.291 61.9153C227.921 62.5269 229.377 63.5289 230.529 64.8334C232.499 67.0666 233.522 70.0947 235.833 71.9747C237.835 73.6023 240.544 74.1385 242.551 75.7598C243.664 76.6533 244.508 77.8357 244.992 79.1771C245.475 80.5186 245.58 81.9674 245.293 83.3642C245.007 84.7611 244.341 86.0521 243.368 87.0955C242.395 88.1389 241.154 88.8944 239.78 89.279C241.983 93.2533 239.918 98.9562 235.675 100.596L234.652 100.174C232.741 97.9947 231.521 95.2975 231.147 92.4244C230.772 89.5513 231.261 86.6319 232.55 84.0366C232.424 84.0366 232.304 84.0366 232.184 84.0366C230.413 85.0216 228.34 85.3172 226.364 84.8664C224.388 84.4157 222.649 83.2505 221.481 81.5952C220.056 82.588 218.377 83.1539 216.641 83.2265C214.905 83.2992 213.185 82.8755 211.682 82.0052C211.243 81.6784 210.739 81.4502 210.204 81.3365C209.55 81.344 208.912 81.5342 208.36 81.8854C206.839 82.7089 205.106 83.0583 203.385 82.8884C202.588 82.7891 201.829 82.4924 201.176 82.0253C200.523 81.5581 199.997 80.9354 199.647 80.2136H199.527C198.542 79.9883 197.637 79.4976 196.911 78.7947C196.185 78.0917 195.666 77.2036 195.41 76.2266C194.912 74.2441 195.173 72.1473 196.142 70.3471Z"
                         fill="#263238" />
                 </svg> -->
-            </div>
-        </section>
+                </div>
+            </section>
 
-        <!--=============== CONTACT US ===============-->
-        <section class="contact section container" id="contact">
-            <div class="contact__container grid">
-                <div class="contact__content">
-                    <h2 class="section__title-center">Contact Us From <br> Here</h2>
-                    <p class="contact__description">You can contact us from here, you can write to us,
-                        call us or visit our service center, we will gladly assist you.</p>
+            <!--=============== CONTACT US ===============-->
+            <section class="contact section container" id="contact">
+                <div class="contact__container grid">
+                    <div class="contact__content">
+                        <h2 class="section__title-center">Contact Us From <br> Here</h2>
+                        <p class="contact__description">You can contact us from here, you can write to us,
+                            call us or visit our service center, we will gladly assist you.</p>
+                    </div>
+
+                    <ul class="contact__content grid">
+                        <li class="contact__address">Telephone: <span class="contact__information">000 - 111 -
+                                222</span>
+                        </li>
+                        <li class="contact__address">Email: <span class="contact__information">example@gmail.com</span>
+                        </li>
+                        <li class="contact__address">Location: <span class="contact__information">Kerala Calicut
+                                Perambra</span></li>
+                    </ul>
+
+                    <div class="contact__content">
+                        <a href="#" class="button">Contact Us</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--=============== FOOTER ===============-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content">
+                    <a href="#" class="footer__logo">Washing</a>
+                    <p class="footer__description">Order Your Wash Faster <br> Easier</p>
                 </div>
 
-                <ul class="contact__content grid">
-                    <li class="contact__address">Telephone: <span class="contact__information">000 - 111 - 222</span>
-                    </li>
-                    <li class="contact__address">Email: <span class="contact__information">example@gmail.com</span></li>
-                    <li class="contact__address">Location: <span class="contact__information">Kerala Calicut
-                            Perambra</span></li>
-                </ul>
+                <div class="footer__content">
+                    <h3 class="footer__title">Our Services</h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Pricing </a></li>
+                        <li><a href="#" class="footer__link">Discounts</a></li>
+                        <li><a href="#" class="footer__link">Report a bug</a></li>
+                        <li><a href="#" class="footer__link">Terms of Service</a></li>
+                    </ul>
+                </div>
 
-                <div class="contact__content">
-                    <a href="#" class="button">Contact Us</a>
+                <div class="footer__content">
+                    <h3 class="footer__title">Our Company</h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Blog</a></li>
+                        <li><a href="#" class="footer__link">Our mision</a></li>
+                        <li><a href="#" class="footer__link">Get in touch</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Community</h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Support</a></li>
+                        <li><a href="#" class="footer__link">Questions</a></li>
+                        <li><a href="#" class="footer__link">Customer help</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
+                    <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
+
+
+
+
                 </div>
             </div>
-        </section>
-    </main>
 
-    <!--=============== FOOTER ===============-->
-    <footer class="footer section">
-        <div class="footer__container container grid">
-            <div class="footer__content">
-                <a href="#" class="footer__logo">Washing</a>
-                <p class="footer__description">Order Your Wash Faster <br> Easier</p>
-            </div>
+            <p class="footer__copy">&#169; Mobile Car Wash Private Limited</p>
+        </footer>
 
-            <div class="footer__content">
-                <h3 class="footer__title">Our Services</h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Pricing </a></li>
-                    <li><a href="#" class="footer__link">Discounts</a></li>
-                    <li><a href="#" class="footer__link">Report a bug</a></li>
-                    <li><a href="#" class="footer__link">Terms of Service</a></li>
-                </ul>
-            </div>
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class='bx bx-up-arrow-alt scrollup__icon'></i>
+        </a>
 
-            <div class="footer__content">
-                <h3 class="footer__title">Our Company</h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Blog</a></li>
-                    <li><a href="#" class="footer__link">Our mision</a></li>
-                    <li><a href="#" class="footer__link">Get in touch</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">Community</h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Support</a></li>
-                    <li><a href="#" class="footer__link">Questions</a></li>
-                    <li><a href="#" class="footer__link">Customer help</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__social">
-                <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
-                <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
-                <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
-
-
-
-
-            </div>
-        </div>
-
-        <p class="footer__copy">&#169; Mobile Car Wash Private Limited</p>
-    </footer>
-
-    <!--=============== SCROLL UP ===============-->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-    </a>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="js/main.js"></script>
+        <!--=============== MAIN JS ===============-->
+        <script src="js/main.js"></script>
 </body>
 
 </html>

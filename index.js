@@ -63,32 +63,7 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
-// passport.use(new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
-//     await User.findOne({ email: email }, function (err, user) {
-//         if (err) return done(err);
-//         if (!user) return done(null, false, { message: 'Incorrect username.' });
 
-//         bcrypt.compare(password, user.password, function (err, res) {
-//             if (err) return done(err);
-//             if (res === false) return done(null, false, { message: 'Incorrect password.' });
-
-//             return done(null, user);
-//         });
-//     });
-// }));
-
-// passport.use(
-//     new LocalStrategy(async (email, password, done) => {
-//         const user = await User.findOne({ email })
-//         if (!user) {
-//             return done(null, false, { message: 'Incorrect email.' })
-//         }
-//         if (await bcrypt.compare(password, user.password)) {
-//             return done(null, false, { message: 'Incorrect password.' })
-//         }
-//         return done(null, user)
-//     })
-// )
 const authenticateUser = async (email, password, done) => {
     const user = await User.findOne({ email })
     if (user == null) {
