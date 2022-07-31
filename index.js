@@ -210,7 +210,6 @@ app.post("/book", isLoggedIn, async (req, res) => {
                 message: req.body.message,
                 vehicleType: req.body.vehicleType
             })
-
             user.bookings.push(newBooking)
             await user.save();
 
@@ -219,8 +218,6 @@ app.post("/book", isLoggedIn, async (req, res) => {
         }
 
         // const user = await User.findOne(req.user._id)
-
-
         // const newBooking = await Book.create({
         //     name: req.body.name,
         //     email: req.body.email,
@@ -230,13 +227,16 @@ app.post("/book", isLoggedIn, async (req, res) => {
         //     message: req.body.message,
         //     vehicleType: req.body.vehicleType
         // })
-
         // console.log("new Booking", newBooking);
         // res.redirect("/")
 
     } catch (err) {
         res.redirect("/")
     }
+})
+
+app.get("/bookings", isLoggedIn, (req, res) => {
+    res.render("bookings", { name: req.user.name })
 })
 
 
