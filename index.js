@@ -198,17 +198,41 @@ app.get("/book", isLoggedIn, (req, res) => {
 // BOOK POST ROUTE
 app.post("/book", isLoggedIn, async (req, res) => {
     try {
-        const newBooking = await Book.create({
-            name: req.body.name,
-            email: req.body.email,
-            number: req.body.email,
-            location: req.body.location,
-            vehicleNumber: req.body.vehicleNumber,
-            message: req.body.message,
-            vehicleType: req.body.vehicleType
-        })
-        console.log("new Booking", newBooking);
-        res.redirect("/")
+        const user = await User.findOne(req.user._id)
+
+        if (user) {
+            const newBooking = await Book.create({
+                name: req.body.name,
+                email: req.body.email,
+                number: req.body.email,
+                location: req.body.location,
+                vehicleNumber: req.body.vehicleNumber,
+                message: req.body.message,
+                vehicleType: req.body.vehicleType
+            })
+
+            user.bookings.push(newBooking)
+            await user.save();
+
+            console.log("new Booking", newBooking);
+            res.redirect("/")
+        }
+
+        // const user = await User.findOne(req.user._id)
+
+
+        // const newBooking = await Book.create({
+        //     name: req.body.name,
+        //     email: req.body.email,
+        //     number: req.body.email,
+        //     location: req.body.location,
+        //     vehicleNumber: req.body.vehicleNumber,
+        //     message: req.body.message,
+        //     vehicleType: req.body.vehicleType
+        // })
+
+        // console.log("new Booking", newBooking);
+        // res.redirect("/")
 
     } catch (err) {
         res.redirect("/")
