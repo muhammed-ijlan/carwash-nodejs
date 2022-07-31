@@ -107,6 +107,11 @@ function isLoggedOut(req, res, next) {
     res.redirect('/');
 }
 
+function isPaymentSuccess(req, res, next) {
+    if (session.payment_status === 'paid') return next();
+    return res.redirect('/')
+}
+
 // ROUTES
 app.get("/", isLoggedIn, (req, res) => {
     res.render("index", { name: req.user.name })
@@ -185,11 +190,15 @@ app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
             success_url: `${process.env.SERVER_URL}/book`,
             cancel_url: `${process.env.SERVER_URL}/`,
         })
-        res.json({ url: session.url })
+        res.json({ url: session.url, session: session })
+
+
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
 })
+
+
 
 //BOOK ROUTE
 app.get("/book", isLoggedIn, (req, res) => {
@@ -226,7 +235,9 @@ app.get("/bookings", isLoggedIn, async (req, res) => {
     res.render("bookings", { name: req.user.name, bookings: user.bookings })
 })
 
-
+app.get("/admin", (req, res) => {
+    res.render("admin")
+})
 
 //listen
 const port = 4000;
