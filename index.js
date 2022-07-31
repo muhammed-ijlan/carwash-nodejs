@@ -197,28 +197,46 @@ app.get("/book", isLoggedIn, (req, res) => {
 
 // BOOK POST ROUTE
 app.post("/book", isLoggedIn, async (req, res) => {
+
+
     try {
-        const user = await User.findOne(req.user._id)
 
-        if (user) {
-            var date = new Date();
+        User.findOne({ _id: req.user._id }).then((user) => {
+            if (user) {
+                Book.create({
+                    number: req.body.number,
+                    location: req.body.location,
+                    vehicleNumber: req.body.vehicleNumber,
+                    message: req.body.message,
+                    vehicleType: req.body.vehicleType,
+                    date: new Date().toISOString().slice(0, 10)
+                }).then((newEvent) => {
+                    user.bookings.push(newEvent)
+                    user.save();
 
-            const newBooking = await Book.create({
-                name: req.body.name,
-                email: req.body.email,
-                number: req.body.number,
-                location: req.body.location,
-                vehicleNumber: req.body.vehicleNumber,
-                message: req.body.message,
-                vehicleType: req.body.vehicleType,
-                date: new Date().toISOString().slice(0, 10)
-            })
-            user.bookings.push(newBooking)
-            await user.save();
+                    res.redirect("/")
+                })
+            }
+        })
 
-            console.log("new Booking", newBooking);
-            res.redirect("/")
-        }
+        // const user = await User.findOne({ _id: req.user._id })
+        // console.log(user);
+
+        // if (user) {
+        //     const newBooking = await Book.create({
+        //         number: req.body.number,
+        //         location: req.body.location,
+        //         vehicleNumber: req.body.vehicleNumber,
+        //         message: req.body.message,
+        //         vehicleType: req.body.vehicleType,
+        //         date: new Date().toISOString().slice(0, 10)
+        //     })
+        //     user.bookings.push(newBooking)
+        //     await user.save();
+
+        //     console.log("new Booking added");
+        // }
+        // res.redirect("/")
 
         // const user = await User.findOne(req.user._id)
         // const newBooking = await Book.create({
