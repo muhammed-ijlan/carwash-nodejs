@@ -190,10 +190,6 @@ app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
     }
 })
 
-
-
-
-
 //BOOK ROUTE
 app.get("/book", isLoggedIn, (req, res) => {
     res.render("book", { name: req.user.name, email: req.user.email })
