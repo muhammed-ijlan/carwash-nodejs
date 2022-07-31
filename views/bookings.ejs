@@ -6,138 +6,122 @@
 </head>
 
 <body>
-    <%- include("nav") %>
-        <style>
-            body {
-                height: 100vh;
-                display: grid;
-                justify-content: center;
-                align-items: center;
-                color: #4f546c;
-                font-size: 0.9rem;
-                background-color: #f9fbff;
-            }
+    <style>
+        .main {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #4f546c;
+            font-size: 0.9rem;
+            background-color: #f9fbff;
+        }
 
-            table {
-                border-collapse: collapse;
-                box-shadow: 0 5px 10px #e1e5ee;
-                background-color: white;
-                text-align: left;
-                overflow: hidden;
-            }
+        h1 {
+            margin-bottom: 30px;
+        }
 
-            table thead {
-                box-shadow: 0 5px 10px #e1e5ee;
-            }
+        table {
+            border-collapse: collapse;
+            box-shadow: 0 5px 10px #e1e5ee;
+            background-color: white;
+            text-align: left;
+            overflow: hidden;
+        }
 
-            table th {
-                padding: 1rem 2rem;
-                text-transform: uppercase;
-                letter-spacing: 0.1rem;
-                font-size: 0.7rem;
-                font-weight: 900;
-            }
+        table thead {
+            box-shadow: 0 5px 10px #e1e5ee;
+        }
 
-            table td {
-                padding: 1rem 2rem;
-            }
+        table th {
+            padding: 1rem 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-size: 0.7rem;
+            font-weight: 900;
+        }
 
-            table a {
-                text-decoration: none;
-                color: #2962ff;
-            }
+        table td {
+            padding: 1rem 2rem;
+        }
 
-            table .status {
-                border-radius: 0.2rem;
-                background-color: red;
-                padding: 0.2rem 1rem;
-                text-align: center;
-            }
+        table a {
+            text-decoration: none;
+            color: #2962ff;
+        }
 
-            table .status-pending {
-                background-color: #fff0c2;
-                color: #a68b00;
-            }
+        table .status {
+            border-radius: 0.2rem;
+            background-color: red;
+            padding: 0.2rem 1rem;
+            text-align: center;
+        }
 
-            table .status-paid {
-                background-color: #c8e6c9;
-                color: #388e3c;
-            }
+        table .status-pending {
+            background-color: #fff0c2;
+            color: #a68b00;
+        }
 
-            table .status-unpaid {
-                background-color: #ffcdd2;
-                color: #c62828;
-            }
+        table .status-paid {
+            background-color: #c8e6c9;
+            color: #388e3c;
+        }
 
-            table .amount {
-                text-align: right;
-            }
+        table .status-unpaid {
+            background-color: #ffcdd2;
+            color: #c62828;
+        }
 
-            table tr:nth-child(even) {
-                background-color: #f4f6fb;
-            }
-        </style>
+        table .amount {
+            text-align: right;
+        }
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Invoice</th>
-                    <th>Vehicle</th>
-                    <th>Booking Date</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="#">INV__1001</a></td>
-                    <td>Car</td>
-                    <td>1/5/2021</td>
-                    <td>
-                        <p class="status status-paid">Paid</p>
-                    </td>
-                    <td class="amount">$500.18</td>
-                </tr>
+        table tr:nth-child(even) {
+            background-color: #f4f6fb;
+        }
+    </style>
 
+    <div class="main">
 
-                <tr>
-                    <td><a href="#">INV__1002</a></td>
-                    <td>Sonic</td>
-                    <td>1/4/2021</td>
-                    <td>
-                        <p class="status status-paid">Paid</p>
-                    </td>
-                    <td class="amount">$415.25</td>
-                </tr>
-                <tr>
-                    <td><a href="#">INV__1003</a></td>
-                    <td>Innercircle</td>
-                    <td>1/2/2021</td>
-                    <td>
-                        <p class="status status-pending">Pending</p>
-                    </td>
-                    <td class="amount">$1324.84</td>
-                </tr>
-                <tr>
-                    <td><a href="#">INV__1004</a></td>
-                    <td>Varsity Plus</td>
-                    <td>12/30/2020</td>
-                    <td>
-                        <p class="status status-pending">Pending</p>
-                    </td>
-                    <td class="amount">$998.26</td>
-                </tr>
-                <tr>
-                    <td><a href="#">INV__1005</a></td>
-                    <td>Highlander</td>
-                    <td>12/18/2020</td>
-                    <td>
-                        <p class="status status-paid">Paid</p>
-                    </td>
-                    <td class="amount">$1152.35</td>
-                </tr>
-            </tbody>
-        </table>
+        <%- include("nav") %>
+            <h1>
+                <%= name %>'s Bookings
+            </h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vehicle</th>
+                        <th>Booking Date</th>
+                        <th>Status</th>
+                        <th>Vehicle Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% bookings.forEach(item=>{ %>
+                        <tr>
+                            <td><a href="#">
+                                    <%= item._id %>
+                                </a></td>
+                            <td>
+                                <%= item.vehicleType %>
+                            </td>
+                            <td>
+                                <%= item.date %>
+                            </td>
+                            <td>
+                                <p class="status status-paid">Paid</p>
+                            </td>
+                            <td class="amount">
+                                <%= item.vehicleNumber %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+    </div>
+    <%- include("footer") %>
 </body>
 
 </html>

@@ -15,6 +15,7 @@ const methodeOverride = require("method-override")
 const LocalStrategy = require("passport-local").Strategy
 const bcrypt = require("bcrypt");
 const Book = require("./models/Book");
+const { use } = require("passport");
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
@@ -197,10 +198,7 @@ app.get("/book", isLoggedIn, (req, res) => {
 
 // BOOK POST ROUTE
 app.post("/book", isLoggedIn, async (req, res) => {
-
-
     try {
-
         User.findOne({ _id: req.user._id }).then((user) => {
             if (user) {
                 Book.create({
@@ -218,46 +216,14 @@ app.post("/book", isLoggedIn, async (req, res) => {
                 })
             }
         })
-
-        // const user = await User.findOne({ _id: req.user._id })
-        // console.log(user);
-
-        // if (user) {
-        //     const newBooking = await Book.create({
-        //         number: req.body.number,
-        //         location: req.body.location,
-        //         vehicleNumber: req.body.vehicleNumber,
-        //         message: req.body.message,
-        //         vehicleType: req.body.vehicleType,
-        //         date: new Date().toISOString().slice(0, 10)
-        //     })
-        //     user.bookings.push(newBooking)
-        //     await user.save();
-
-        //     console.log("new Booking added");
-        // }
-        // res.redirect("/")
-
-        // const user = await User.findOne(req.user._id)
-        // const newBooking = await Book.create({
-        //     name: req.body.name,
-        //     email: req.body.email,
-        //     number: req.body.email,
-        //     location: req.body.location,
-        //     vehicleNumber: req.body.vehicleNumber,
-        //     message: req.body.message,
-        //     vehicleType: req.body.vehicleType
-        // })
-        // console.log("new Booking", newBooking);
-        // res.redirect("/")
-
     } catch (err) {
         res.redirect("/")
     }
 })
 
-app.get("/bookings", isLoggedIn, (req, res) => {
-    res.render("bookings", { name: req.user.name })
+app.get("/bookings", isLoggedIn, async (req, res) => {
+    const user = await User.findOne({ _id: req.user._id })
+    res.render("bookings", { name: req.user.name, bookings: user.bookings })
 })
 
 
