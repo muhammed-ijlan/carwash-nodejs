@@ -201,14 +201,17 @@ app.post("/book", isLoggedIn, async (req, res) => {
         const user = await User.findOne(req.user._id)
 
         if (user) {
+            var date = new Date();
+
             const newBooking = await Book.create({
                 name: req.body.name,
                 email: req.body.email,
-                number: req.body.email,
+                number: req.body.number,
                 location: req.body.location,
                 vehicleNumber: req.body.vehicleNumber,
                 message: req.body.message,
-                vehicleType: req.body.vehicleType
+                vehicleType: req.body.vehicleType,
+                date: new Date().toISOString().slice(0, 10)
             })
             user.bookings.push(newBooking)
             await user.save();

@@ -7,7 +7,8 @@ const BookSchema = new mongoose.Schema({
     location: { type: String, required: true },
     vehicleNumber: { type: String, required: true },
     message: { type: String },
-    vehicleType: { type: String }
+    vehicleType: { type: String },
+    date: String
 
 }, {
     collection: "bookings"
