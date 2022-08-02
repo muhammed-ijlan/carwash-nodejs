@@ -75,6 +75,18 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+// MIDDLEWARE
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/login');
+}
+
+function isLoggedOut(req, res, next) {
+    if (!req.isAuthenticated()) return next();
+    res.redirect('/');
+}
+
+
 /////////////////USERROUTES/////////////
 
 const authenticateUser = async (email, password, done) => {
@@ -96,21 +108,6 @@ const authenticateUser = async (email, password, done) => {
 passport.use(new LocalStrategy({ usernameField: "email" }, authenticateUser))
 
 
-// MIDDLEWARE
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login');
-}
-
-function isLoggedOut(req, res, next) {
-    if (!req.isAuthenticated()) return next();
-    res.redirect('/');
-}
-
-function isPaymentSuccess(req, res, next) {
-    if (session.payment_status === 'paid') return next();
-    return res.redirect('/')
-}
 
 // ROUTES
 app.get("/", isLoggedIn, (req, res) => {
