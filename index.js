@@ -44,9 +44,6 @@ app.use(session({
 
 app.use(methodeOverride("_method"))
 
-
-// app.use("/", userRoute)
-
 //mongoose connection
 mongoose.connect(process.env.MONGO_URL_DEMO, {
     useNewUrlParser: true,
