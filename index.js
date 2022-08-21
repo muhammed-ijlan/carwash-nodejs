@@ -5,7 +5,6 @@ const mongoose = require("mongoose")
 const User = require("./models/User")
 
 const app = express();
-const userRoute = require("./routes/userRoute")
 const flash = require("express-flash")
 const session = require("express-session");
 
@@ -15,7 +14,6 @@ const methodeOverride = require("method-override")
 const LocalStrategy = require("passport-local").Strategy
 const bcrypt = require("bcrypt");
 const Book = require("./models/Book");
-const { use } = require("passport");
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
@@ -106,7 +104,8 @@ passport.use(new LocalStrategy({ usernameField: "email" }, authenticateUser))
 
 
 
-// ROUTES
+//**  ROUTES
+// !! USER ROUTES
 app.get("/", isLoggedIn, (req, res) => {
     res.render("index", { name: req.user.name })
 })
@@ -158,6 +157,8 @@ app.post("/login", passport.authenticate("local", {
     failureFlash: true,
 }))
 
+
+
 //services stripe routes
 app.get("/services", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name })
@@ -194,7 +195,8 @@ app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
 
 
 
-//BOOK ROUTE
+//!! BOOK ROUTES
+
 app.get("/book", isLoggedIn, (req, res) => {
     res.render("book", { name: req.user.name, email: req.user.email })
 })
@@ -228,6 +230,8 @@ app.get("/bookings", isLoggedIn, async (req, res) => {
     const user = await User.findOne({ _id: req.user._id })
     res.render("bookings", { name: req.user.name, bookings: user.bookings })
 })
+
+// !! ADMIN ROUTES
 
 app.get("/admin", (req, res) => {
     res.render("admin")
