@@ -25,6 +25,7 @@
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "razorpay": "^2.8.3",
     "stripe": "^9.16.0"
   }
 }

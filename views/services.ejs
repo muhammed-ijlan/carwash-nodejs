@@ -7,32 +7,19 @@
 
 
 
+
     <!--=============== BOXICONS ===============-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="css/styles.css">
     <link href="img/flaticon/font/flaticon.css" rel="stylesheet">
-
-    <title>Responsive website delivery</title>
+    <title>Checkout</title>
 </head>
 
 <body>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-
-        * {
-
-            font-family: 'Comfortaa', cursive;
-
-            margin: 0;
-
-            padding: 0;
-
-            box-sizing: border-box;
-
-        }
-
         .service-container {
             max-width: 1200px;
             margin: 100px auto;
@@ -348,8 +335,9 @@
                         </p>
 
                         <!-- <a href="#">Proceed to Checkout</a> -->
-                        <button id="checkout-btn">Proceed to Checkout</button>
+                        <!-- <button id='rzp-button1'>Pay</button> -->
 
+                        <button id="rzp-button1">Pay</button>
                     </div>
 
                 </div>
@@ -358,15 +346,44 @@
 
 
             <%- include("footer") %>
-</body>
+        </main>
+
+        <button id="rzp-button1">Pay</button>
 
 
-</html>
+        <script>
+            document.getElementById('rzp-button1').onclick = async function (e) {
+                e.preventDefault();
+
+                const response = await fetch("/payment", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                const orderData = await response.json()
+
+                const options = {
+                    "key": "rzp_test_dXeVrvuOA7Zd5e",
+                    "amount": "50000",
+                    "currency": "INR",
+                    "order_id": orderData.order.id,
+                    "callback_url": "/payment-success",
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+
+                const rzp1 = new Razorpay(options);
+                rzp1.open();
+            }
+
+        </script>
 
 
-</main>
 
-<!-- ScRIPTs -->
+        <!-- ScRIPTs
 <script>
     const button = document.getElementById("checkout-btn")
     button.addEventListener("click", () => {
@@ -395,7 +412,7 @@
                 console.error(e.error)
             })
     })
-</script>
+</script> -->
 </body>
 
 </html>

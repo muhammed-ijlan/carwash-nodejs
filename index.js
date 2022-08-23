@@ -15,7 +15,31 @@ const LocalStrategy = require("passport-local").Strategy
 const bcrypt = require("bcrypt");
 const Book = require("./models/Book");
 
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+// const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+
+const Razorpay = require("razorpay");
+
+// RAZORPAY
+
+
+app.post("/payment", async (req, res) => {
+
+    try {
+        const instance = new Razorpay({
+            key_id: "rzp_test_dXeVrvuOA7Zd5e",
+            key_secret: "FJJSiaq4qTKJCZTWE9PMVcB4"
+        })
+
+        let order = await instance.orders.create({
+            amount: 50000,
+            currency: "INR",
+        })
+
+        res.status(201).json({ success: true, order })
+    } catch (e) {
+        console.log(e);
+    }
+})
 
 
 
@@ -50,10 +74,10 @@ mongoose.connect(process.env.MONGO_URL_DEMO, {
     .catch((err) => console.log(err))
 
 
-//STRIPE ITEMS
-const storeItems = new Map([
-    [1, { priceInCents: 50000, name: "Car / Bike Washing" }],
-])
+// //STRIPE ITEMS
+// const storeItems = new Map([
+//     [1, { priceInCents: 50000, name: "Car / Bike Washing" }],
+// ])
 
 
 // passport config
@@ -82,7 +106,7 @@ function isLoggedOut(req, res, next) {
 }
 
 
-/////////////////USERROUTES/////////////
+///////////////////////////////////////////////
 
 const authenticateUser = async (email, password, done) => {
     const user = await User.findOne({ email })
@@ -164,34 +188,34 @@ app.get("/services", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name })
 })
 
-app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
-    try {
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],
-            mode: "payment",
-            line_items: req.body.items.map(item => {
-                const storeItem = storeItems.get(item.id)
-                return {
-                    price_data: {
-                        currency: "inr",
-                        product_data: {
-                            name: storeItem.name,
-                        },
-                        unit_amount: storeItem.priceInCents,
-                    },
-                    quantity: item.quantity,
-                }
-            }),
-            success_url: `${process.env.SERVER_URL}/book`,
-            cancel_url: `${process.env.SERVER_URL}/`,
-        })
-        res.json({ url: session.url, session: session })
+// app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
+//     try {
+//         const session = await stripe.checkout.sessions.create({
+//             payment_method_types: ["card"],
+//             mode: "payment",
+//             line_items: req.body.items.map(item => {
+//                 const storeItem = storeItems.get(item.id)
+//                 return {
+//                     price_data: {
+//                         currency: "inr",
+//                         product_data: {
+//                             name: storeItem.name,
+//                         },
+//                         unit_amount: storeItem.priceInCents,
+//                     },
+//                     quantity: item.quantity,
+//                 }
+//             }),
+//             success_url: `${process.env.SERVER_URL}/book`,
+//             cancel_url: `${process.env.SERVER_URL}/`,
+//         })
+//         res.json({ url: session.url, session: session })
 
 
-    } catch (e) {
-        res.status(500).json({ error: e.message })
-    }
-})
+//     } catch (e) {
+//         res.status(500).json({ error: e.message })
+//     }
+// })
 
 
 
