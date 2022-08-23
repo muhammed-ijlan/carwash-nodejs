@@ -1,127 +1,140 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>My Bookings</title>
 </head>
 
 <body>
+
     <style>
-        .main {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #4f546c;
-            font-size: 0.9rem;
-            background-color: #f9fbff;
-        }
-
-        h1 {
-            margin-bottom: 30px;
-        }
-
         table {
+            border: 1px solid #ccc;
             border-collapse: collapse;
-            box-shadow: 0 5px 10px #e1e5ee;
-            background-color: white;
-            text-align: left;
-            overflow: hidden;
+            margin: 100px 0px;
+            padding: 0;
+            width: 80%;
+            table-layout: fixed;
         }
 
-        table thead {
-            box-shadow: 0 5px 10px #e1e5ee;
+        table caption {
+            font-size: 1.5em;
+            margin: .5em 0 .75em;
         }
 
-        table th {
-            padding: 1rem 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-size: 0.7rem;
-            font-weight: 900;
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
         }
 
+        table th,
         table td {
-            padding: 1rem 2rem;
-        }
-
-        table a {
-            text-decoration: none;
-            color: #2962ff;
-        }
-
-        table .status {
-            border-radius: 0.2rem;
-            background-color: red;
-            padding: 0.2rem 1rem;
+            padding: .625em;
             text-align: center;
         }
 
-        table .status-pending {
-            background-color: #fff0c2;
-            color: #a68b00;
+        table th {
+            font-size: .85em;
+            letter-spacing: .1em;
+            text-transform: uppercase;
         }
 
-        table .status-paid {
-            background-color: #c8e6c9;
-            color: #388e3c;
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+            table caption {
+                font-size: 1.3em;
+            }
+
+            table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            table tr {
+                border-bottom: 3px solid #ddd;
+                display: block;
+                margin-bottom: .625em;
+            }
+
+            table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .8em;
+                text-align: right;
+            }
+
+            table td::before {
+
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
         }
 
-        table .status-unpaid {
-            background-color: #ffcdd2;
-            color: #c62828;
-        }
-
-        table .amount {
-            text-align: right;
-        }
-
-        table tr:nth-child(even) {
-            background-color: #f4f6fb;
+        .table-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 
-    <div class="main">
 
-        <%- include("nav") %>
-            <h1>
-                <%= name %>'s Bookings
-            </h1>
+    <%- include("nav") %>
+        <div class="table-main">
             <table>
+                <caption>
+                    <%= name %>'s Bookings
+                </caption>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Vehicle Type</th>
-                        <th>Booking Date</th>
-                        <th>Status</th>
-                        <th>Vehicle Number</th>
+                        <th scope="col">Booking Id</th>
+                        <th scope="col">Vehicle Type</th>
+                        <th scope="col">Booking Date</th>
+                        <th scope="col">Vehicle Number</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% bookings.forEach(item=>{ %>
                         <tr>
-                            <td><a href="#">
+                            <td data-label="Booking Id"><a href="#">
                                     <%= item._id %>
                                 </a></td>
-                            <td>
+                            <td data-label="Vehicle Type">
                                 <%= item.vehicleType %>
                             </td>
-                            <td>
+                            <td data-label="Booking Date">
                                 <%= item.date %>
                             </td>
-                            <td>
-                                <p class="status status-paid">Paid</p>
-                            </td>
-                            <td class="amount">
+                            <td data-label="Vehicle Number">
                                 <%= item.vehicleNumber %>
                             </td>
                         </tr>
                         <% }) %>
+
+
                 </tbody>
             </table>
-    </div>
-    <%- include("footer") %>
+        </div>
+
+        <%- include("footer") %>
 </body>
 
 </html>
