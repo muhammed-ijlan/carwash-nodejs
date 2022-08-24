@@ -21,15 +21,14 @@ const Razorpay = require("razorpay");
 
 // RAZORPAY
 
+const instance = new Razorpay({
+    key_id: "rzp_test_xJwCh2TVwbVdzN",
+    key_secret: "Jdo8xWIbBIN0bFPXD9EQKrVO"
+})
 
 app.post("/payment", async (req, res) => {
 
     try {
-        const instance = new Razorpay({
-            key_id: "rzp_test_dXeVrvuOA7Zd5e",
-            key_secret: "FJJSiaq4qTKJCZTWE9PMVcB4"
-        })
-
         let order = await instance.orders.create({
             amount: 50000,
             currency: "INR",
@@ -39,6 +38,12 @@ app.post("/payment", async (req, res) => {
     } catch (e) {
         console.log(e);
     }
+})
+
+app.post("/payment-success", (req, res) => {
+    instance.payments.fetch(req.body).then((paymentDocument) => {
+        console.log(paymentDocument)
+    })
 })
 
 
