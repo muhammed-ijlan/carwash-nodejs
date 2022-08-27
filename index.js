@@ -99,12 +99,6 @@ function isLoggedOut(req, res, next) {
     res.redirect('/');
 }
 
-function isPaymentComplete(req, res, next) {
-    if (req.body.razorpay_payment_id) {
-        return next();
-    }
-    res.redirect("/services")
-}
 
 
 ///////////////////////////////////////////////
