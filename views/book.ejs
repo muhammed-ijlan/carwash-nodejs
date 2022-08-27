@@ -17,6 +17,7 @@
 
             <div class="book-container">
                 <div class="title">Book a Wash</div>
+
                 <div class="content">
                     <form action="/book" id="book-form" method="POST">
                         <div class="user-details">
@@ -70,8 +71,13 @@
             </div>
         </section>
 
-
         <%- include("footer") %>
+            <script>
+                const form = document.getElementById("book-form")
+                form.addEventListener("submit", () => {
+                    alert("Booking Successfull!! \n Our Agent Will Contact You, Happy Washing!")
+                })
+            </script>
 </body>
 
 </html>

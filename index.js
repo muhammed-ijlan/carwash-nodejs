@@ -15,9 +15,8 @@ const LocalStrategy = require("passport-local").Strategy
 const bcrypt = require("bcrypt");
 const Book = require("./models/Book");
 
-// const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
-
 const Razorpay = require("razorpay");
+const nodemailer = require("nodemailer");
 
 // RAZORPAY
 
@@ -75,13 +74,6 @@ mongoose.connect(process.env.MONGO_URL_DEMO, {
 }).then(() => console.log("DB connected"))
     .catch((err) => console.log(err))
 
-
-// //STRIPE ITEMS
-// const storeItems = new Map([
-//     [1, { priceInCents: 50000, name: "Car / Bike Washing" }],
-// ])
-
-
 // passport config
 app.use(passport.initialize())
 app.use(passport.session())
@@ -105,6 +97,13 @@ function isLoggedIn(req, res, next) {
 function isLoggedOut(req, res, next) {
     if (!req.isAuthenticated()) return next();
     res.redirect('/');
+}
+
+function isPaymentComplete(req, res, next) {
+    if (req.body.razorpay_payment_id) {
+        return next();
+    }
+    res.redirect("/services")
 }
 
 
@@ -190,36 +189,6 @@ app.get("/services", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name })
 })
 
-// app.post("/create-checkout-session", isLoggedIn, async (req, res) => {
-//     try {
-//         const session = await stripe.checkout.sessions.create({
-//             payment_method_types: ["card"],
-//             mode: "payment",
-//             line_items: req.body.items.map(item => {
-//                 const storeItem = storeItems.get(item.id)
-//                 return {
-//                     price_data: {
-//                         currency: "inr",
-//                         product_data: {
-//                             name: storeItem.name,
-//                         },
-//                         unit_amount: storeItem.priceInCents,
-//                     },
-//                     quantity: item.quantity,
-//                 }
-//             }),
-//             success_url: `${process.env.SERVER_URL}/book`,
-//             cancel_url: `${process.env.SERVER_URL}/`,
-//         })
-//         res.json({ url: session.url, session: session })
-
-
-//     } catch (e) {
-//         res.status(500).json({ error: e.message })
-//     }
-// })
-
-
 
 //!! BOOK ROUTES
 
@@ -243,7 +212,47 @@ app.post("/book", isLoggedIn, async (req, res) => {
                     user.bookings.push(newEvent)
                     user.save();
 
-                    res.redirect("/")
+                    const output = `
+                    <p>You Have a New Vehicle Wash Booking</p>
+                    <h3>Contact Details</h3>
+                    <ul>
+                    <li>Name: ${req.body.name}</li>
+                    <li>Email: ${req.body.email}</li>
+                    <li>Phone Number: ${req.body.number}</li>
+                    <li>location: ${req.body.location}</li>
+                    <li>Vehicle Type: ${req.body.vehicleType}</li>
+                    </ul>
+                    <h3>Message</h3>
+                    <p>${req.body.message}</p>
+                    `
+                    let transporter = nodemailer.createTransport({
+                        host: 'smtp.gmail.com',
+                        port: 587,
+                        secure: false,
+                        auth: {
+                            user: process.env.EMAIL,
+                            pass: process.env.EMAIL_PASS,
+                        },
+                        tls: {
+                            rejectUnauthorized: false
+                        }
+                    });
+
+                    let mailOptions = {
+                        from: `"New Form "<${req.body.email}>`,
+                        to: process.env.EMAIL,
+                        subject: "New Booking Form submitted",
+                        html: output,
+                    };
+
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                        console.log('Message sent: %s', info.messageId);
+                    });
+
+                    res.redirect("bookings")
                 })
             }
         })
