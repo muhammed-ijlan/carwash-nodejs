@@ -22,29 +22,26 @@ const Razorpay = require("razorpay");
 // RAZORPAY
 
 const instance = new Razorpay({
-    key_id: "rzp_test_xJwCh2TVwbVdzN",
-    key_secret: "Jdo8xWIbBIN0bFPXD9EQKrVO"
+    key_id: "rzp_test_1vKwX852eVgtKB",
+    key_secret: "J6W3oHxQiGeHAUknUkpG4YSi"
 })
 
-app.post("/payment", async (req, res) => {
 
-    try {
-        let order = await instance.orders.create({
-            amount: 50000,
-            currency: "INR",
-        })
-
-        res.status(201).json({ success: true, order })
-    } catch (e) {
-        console.log(e);
+app.post('/create/orderId', (req, res) => {
+    var options = {
+        amount: 50000,// amount in the smallest currency unit
+        currency: "INR",
+        receipt: "rcp11"
     }
-})
-
-app.post("/payment-success", (req, res) => {
-    instance.payments.fetch(req.body).then((paymentDocument) => {
-        console.log(paymentDocument)
+    instance.orders.create(options, function (err, order) {
+        res.json({ orderId: order.id })
     })
-})
+});
+
+
+app.post('/verification', ((req, res) => {
+    res.redirect("/book")
+}))
 
 
 
