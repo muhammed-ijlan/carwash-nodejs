@@ -37,8 +37,9 @@ app.post('/create/orderId', (req, res) => {
     })
 });
 
-
+var successPayment = false;
 app.post('/verification', ((req, res) => {
+    successPayment = true;
     res.redirect("/book")
 }))
 
@@ -97,6 +98,13 @@ function isLoggedIn(req, res, next) {
 function isLoggedOut(req, res, next) {
     if (!req.isAuthenticated()) return next();
     res.redirect('/');
+}
+
+function isPaymentSuccess(req, res, next) {
+    if (successPayment) {
+        return next();
+    }
+    res.redirect("/services")
 }
 
 
@@ -178,7 +186,7 @@ app.post("/login", passport.authenticate("local", {
 
 
 
-//services stripe routes
+// SERVICES
 app.get("/services", isLoggedIn, (req, res) => {
     res.render("services", { name: req.user.name })
 })
@@ -186,12 +194,12 @@ app.get("/services", isLoggedIn, (req, res) => {
 
 //!! BOOK ROUTES
 
-app.get("/book", isLoggedIn, (req, res) => {
+app.get("/book", isLoggedIn, isPaymentSuccess, (req, res) => {
     res.render("book", { name: req.user.name, email: req.user.email })
 })
 
 // BOOK POST ROUTE
-app.post("/book", isLoggedIn, async (req, res) => {
+app.post("/book", isPaymentSuccess, isLoggedIn, async (req, res) => {
     try {
         User.findOne({ _id: req.user._id }).then((user) => {
             if (user) {
@@ -214,6 +222,7 @@ app.post("/book", isLoggedIn, async (req, res) => {
                     <li>Email: ${req.body.email}</li>
                     <li>Phone Number: ${req.body.number}</li>
                     <li>location: ${req.body.location}</li>
+                    <li>Vehicle Number: ${req.body.vehicleNumber}</li>
                     <li>Vehicle Type: ${req.body.vehicleType}</li>
                     </ul>
                     <h3>Message</h3>
@@ -247,6 +256,7 @@ app.post("/book", isLoggedIn, async (req, res) => {
                     });
 
                     res.redirect("bookings")
+                    successPayment = false;
                 })
             }
         })
