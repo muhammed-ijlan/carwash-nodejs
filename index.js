@@ -270,10 +270,12 @@ app.get("/bookings", isLoggedIn, async (req, res) => {
     res.render("bookings", { name: req.user.name, bookings: user.bookings })
 })
 
-// !! ADMIN ROUTES
 
 app.get('/terms', function (req, res) {
     res.render("terms")
+});
+app.get('/contact', function (req, res) {
+    res.render("contact")
 });
 
 

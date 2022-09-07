@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>Contact Us</title>
+</head>
+
+<body>
+    <%- include("nav") %>
+        <!--=============== APP ===============-->
+        <style>
+            .maps iframe {
+                width: 90%;
+                margin: 0 auto;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+        </style>
+        <section class="app section container">
+            <div class="app__container grid">
+                <div class="app__data">
+                    <h2 class="section__title-center">Scan Here For Get in touch <br> With Splash Movable Auto Spa</h2>
+                    <p class="app__description">Scan here for chat with us.and give your review and your experiences
+                        with
+                        us.
+                    </p>
+                    <div class="app__buttons">
+                        <a href="tel:8714857005" class="button button-flex">
+                            <i class="ri-phone-fill"></i> Contact us
+                        </a>
+                        <a href="https://wa.me/8714857004?text=Hello..!%2C%20I%20want%20to%20connect%20with%20you!"
+                            class="button button-flex">
+                            <i class="ri-whatsapp-line"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <img style="border-radius: 25px;" src="/images/WhatsApp Image 2022-08-29 at 9.08.01 AM.jpeg" alt="">
+            </div>
+        </section>
+
+        <section style="width: 100%;margin: 0 auto;" class="maps">
+            <h3 style="text-align: center;color:rgb(88, 122, 88);padding-bottom: 20px;">10 KM Around Perambra Get Our
+                Services</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31270.844348798575!2d75.74488578766393!3d11.562211769606204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba67c7969e2a065%3A0x2d60bd2ae30b114a!2sPerambra%2C%20Kerala%20673525!5e0!3m2!1sen!2sin!4v1662539119726!5m2!1sen!2sin"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+        <%- include("footer") %>
+
+</body>
+
+</html>
