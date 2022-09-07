@@ -272,9 +272,10 @@ app.get("/bookings", isLoggedIn, async (req, res) => {
 
 // !! ADMIN ROUTES
 
-app.get('/admin', function (req, res) {
-
+app.get('/terms', function (req, res) {
+    res.render("terms")
 });
+
 
 //listen
 const port = 4000;
