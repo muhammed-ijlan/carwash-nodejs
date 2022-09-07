@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- BOOTSTRAP -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
 
@@ -261,6 +267,379 @@
             }
 
         }
+
+        h1 {
+            font-size: 42px;
+            line-height: 54px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 34px;
+            line-height: 44px;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: 26px;
+            line-height: 33px;
+            letter-spacing: -1px;
+        }
+
+        h4 {
+            font-size: 20px;
+            line-height: 31px;
+        }
+
+        h5 {
+            font-size: 16px;
+            line-height: 21px;
+        }
+
+        h6 {
+            font-size: 13px;
+            line-height: 21px;
+        }
+
+        .h2 {
+            font-size: 35px;
+            line-height: 48px;
+            letter-spacing: -1px;
+        }
+
+        .h3,
+        h3 {
+            font-size: 26px;
+            line-height: 38px;
+        }
+
+        p {
+            margin: 0px 0px 24px 0px;
+        }
+
+        p:last-child {
+            margin: 0px;
+        }
+
+        a {
+            color: #3544ee;
+        }
+
+        a:hover {
+            color: #202db8;
+            text-decoration: none;
+        }
+
+        a:active,
+        a:hover {
+            outline: 0;
+            text-decoration: none;
+        }
+
+        a.text-primary:focus,
+        a.text-primary:hover {
+            color: #202db8 !important;
+        }
+
+        .space-medium {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .btn-outline-primary {
+            color: #3544ee;
+            background-color: transparent;
+            border-color: #3544ee;
+        }
+
+        .btn-outline-primary:hover {
+            color: #fff;
+            background-color: #3544ee;
+            border-color: #3544ee;
+        }
+
+        .btn-outline-primary.focus,
+        .btn-outline-primary:focus {
+            color: #fff;
+            background-color: #3544ee;
+            border-color: #3544ee;
+            box-shadow: 0 0 0 1px rgb(53, 68, 238);
+        }
+
+        .btn-rounded {
+            border-radius: 100px;
+        }
+
+        .feature-block-v7.feature-block {
+            margin-bottom: 30px;
+        }
+
+        .feature-block-v7 .feature-title {
+            margin-bottom: 5px;
+            font-size: 21px;
+        }
+
+
+        .feature-block-v7 .feature-icon {
+            background-color: #e1e4fd;
+            color: #3544ee;
+            padding: 18px;
+            font-size: 20px;
+            display: block;
+            text-align: center;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            border-radius: 100%;
+        }
+
+        .feature-app-img {
+            position: relative;
+            text-align: center;
+
+        }
+
+        /* .circle-1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 190px;
+            height: 190px;
+            background-color: #3be1a4;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+        }
+
+        .circle-1:hover {
+            cursor: pointer;
+        }
+
+        .circle-1::after,
+        .circle-1::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 190px;
+            height: 190px;
+            background: #3be1a4;
+            border-radius: 50%;
+            z-index: -1;
+            -webkit-animation: grow 3s ease-in-out infinite;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        .circle-1::after {
+            background: rgb(59, 225, 164);
+        }
+
+        .circle-1::after::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 190px;
+            height: 190px;
+            background: #3be1a4;
+            border-radius: 50%;
+            z-index: -1;
+            -webkit-animation: grow 3s ease-in-out infinite;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        .circle-1::before {
+            background: rgb(59, 225, 164);
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+
+        .circle-2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 190px;
+            height: 190px;
+            background-color: #9c4efb;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+        }
+
+        .circle-2:hover {
+            cursor: pointer;
+        }
+
+        .circle-2::after,
+        .circle-2::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 190px;
+            height: 190px;
+            background: #9c4efb;
+            border-radius: 50%;
+            z-index: -1;
+            -webkit-animation: grow 3s ease-in-out infinite;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        .circle-2::after {
+            background: rgba(156, 78, 251, .5);
+        }
+
+        .circle-2::after::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 190px;
+            height: 190px;
+            background: #3be1a4;
+            border-radius: 50%;
+            z-index: -1;
+            -webkit-animation: grow 3s ease-in-out infinite;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        .circle-2::before {
+            background: rgba(156, 78, 251, .5);
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+
+        .circle-3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 190px;
+            height: 190px;
+            background-color: #fb8645;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+        }
+
+        .circle-3:hover {
+            cursor: pointer;
+        }
+
+        .circle-3::after,
+        .circle-3::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 190px;
+            height: 190px;
+            background: #fb8645;
+            border-radius: 50%;
+            z-index: -1;
+            -webkit-animation: grow 3s ease-in-out infinite;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        .circle-3::after {
+            background: rgba(251, 134, 69, .5);
+        }
+
+        .circle-3::after::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 190px;
+            height: 190px;
+            background: #3be1a4;
+            border-radius: 50%;
+            z-index: -1;
+            -webkit-animation: grow 3s ease-in-out infinite;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+
+
+        .circle-3::before {
+            background: rgba(251, 134, 69, .5);
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        } */
+
+        @-webkit-keyframes grow {
+            0% {
+                -webkit-transform: scale(1, 1);
+                transform: scale(1, 1);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: scale(1.8, 1.8);
+                transform: scale(1.8, 1.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes grow {
+            0% {
+                -webkit-transform: scale(1, 1);
+                transform: scale(1, 1);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: scale(1.8, 1.8);
+                transform: scale(1.8, 1.8);
+                opacity: 0;
+            }
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* padding: 70px 0; */
+            max-width: 400px;
+            margin: 0 auto;
+            position: absolute;
+        }
+
+        .menu {
+            width: 100%;
+        }
+
+        select {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            border: 2px solid #2f51b5;
+
+        }
+
+        .data {
+            display: none;
+        }
     </style>
     <!--=============== HEADER ===============-->
     <%- include("nav")%>
@@ -269,41 +648,77 @@
 
             <div class="service-container">
 
-                <h1>Make Payment To continue</h1>
+                <h1>Select Your Vehicle to continue</h1>
 
                 <div class="cart">
-
+                    <div class="wrapper">
+                        <div class="menu">
+                            <select id="name">
+                                <option value="car">Wash my Car</option>
+                                <option value="bike">Wash my Bike</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="products">
 
-                        <div class="product">
-
-                            <img src="img/bike.svg">
-
-                            <div class="product-info">
-
-                                <h3 class="product-name">Bike Washing</h3>
-
-                                <h4 class="product-price">₹ 500</h4>
-
-                                <h4 class="product-offer">offer :50%</h4>
-
+                        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+                            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+                            crossorigin="anonymous">
+                        <div id="car" class="space-medium data">
+                            <!-- <div class="container"> -->
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                                    <div class="feature-block-v7 feature-block">
+                                        <div class="feature-content">
+                                            <h2>Wash My Car</h2>
+                                            <hr class="m-t-30 m-b-30">
+                                            <p>Complete dry cleaning of a interior including seats
+                                                (carpet/leather), roof, mats and boot + Complete vacuuming of cars
+                                                incl. seats and boot + Washing and cleaning of foot mats + Pre
+                                                washing of car + Foam cleaning of exterior + Tyre arches cleaning +
+                                                Underbody wash + Engine hot water wash and dressing + Washing and
+                                                cleaning of door frames + Side doors cleaning and polishing + Dash
+                                                board cleaning and polishing + Tyre and alloy polishing + Scratch
+                                                proof windshield spray + Car perfume spray</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offset-xl-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="feature-app-img">
+                                        <img src="https://i.pinimg.com/originals/aa/01/81/aa01813ba3af9670e68ce8424859bcbc.png"
+                                            alt="Car Washing">
+                                    </div>
+                                </div>
                             </div>
 
+                            <!-- </div> -->
                         </div>
-                        <h2 style="text-align: center; margin-bottom: 5px;">OR</h2>
-
-                        <div class="product">
-
-                            <img src="img/car.svg">
-
-                            <div class="product-info">
-
-                                <h3 class="product-name">Car Washing</h3>
-                                <h4 class="product-price">₹ 500</h4>
-                                <h4 class="product-offer">offer :50%</h4>
+                        <!-- BIKE -->
+                        <div id="bike" class="space-medium data">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                                    <div class="feature-block-v7 feature-block">
+                                        <div class="feature-content">
+                                            <h2>Wash My Bike</h2>
+                                            <hr class="m-t-30 m-b-30">
+                                            <p>This service includes Foam Wash of Bike’s Body paint together with the
+                                                polishing of Tyre/ Plastic/ Vinyl components of the bike. This
+                                                comprehensive service helps to keep Bike clean, tidy and shiny.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offset-xl-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <!-- <div class="circle-1"></div> -->
+                                    <div class="feature-app-img">
+                                        <img class="bike-img" src="img/bikewash.png" alt="bike Washing">
+                                    </div>
+                                </div>
                             </div>
 
+                            <!-- </div> -->
                         </div>
+
+
 
                     </div>
 
@@ -319,7 +734,7 @@
 
                         </p>
 
-                        <button id="rzp-button1">Pay</button>
+                        <button id="rzp-button1">Proceed to Pay</button>
                     </div>
 
                 </div>
@@ -331,7 +746,15 @@
         </main>
         <button id="rzp-button1">Pay</button>
         <script>
+            // select
+            $(document).ready(function () {
+                $("#name").on("change", function () {
+                    $(".data").hide();
+                    $("#" + $(this).val()).fadeIn(700)
+                }).change()
+            })
 
+            // razorpay
             document.getElementById('rzp-button1').onclick = async function (e) {
                 e.preventDefault();
                 const res = await fetch("/create/orderId", {
