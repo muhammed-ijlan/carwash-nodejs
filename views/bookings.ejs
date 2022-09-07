@@ -7,98 +7,100 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>SplashWash : My Bookings</title>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <script src="js/main.js"></script>
 </head>
 
 <body>
+    <%- include("nav") %>
 
-    <style>
-        table {
-            border: 1px solid #ccc;
-            border-collapse: collapse;
-            margin: 100px 0px;
-            padding: 0;
-            width: 80%;
-            table-layout: fixed;
-        }
-
-        table caption {
-            font-size: 1.5em;
-            margin: .5em 0 .75em;
-        }
-
-        table tr {
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            padding: .35em;
-        }
-
-        table th,
-        table td {
-            padding: .625em;
-            text-align: center;
-        }
-
-        table th {
-            font-size: .85em;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-
-        @media screen and (max-width: 600px) {
+        <style>
             table {
-                border: 0;
+                border: 1px solid #ccc;
+                border-collapse: collapse;
+                margin: 100px 0px;
+                padding: 0;
+                width: 80%;
+                table-layout: fixed;
             }
 
             table caption {
-                font-size: 1.3em;
-            }
-
-            table thead {
-                border: none;
-                clip: rect(0 0 0 0);
-                height: 1px;
-                margin: -1px;
-                overflow: hidden;
-                padding: 0;
-                position: absolute;
-                width: 1px;
+                font-size: 1.5em;
+                margin: .5em 0 .75em;
             }
 
             table tr {
-                border-bottom: 3px solid #ddd;
-                display: block;
-                margin-bottom: .625em;
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                padding: .35em;
             }
 
+            table th,
             table td {
-                border-bottom: 1px solid #ddd;
-                display: block;
-                font-size: .8em;
-                text-align: right;
+                padding: .625em;
+                text-align: center;
             }
 
-            table td::before {
-
-                content: attr(data-label);
-                float: left;
-                font-weight: bold;
+            table th {
+                font-size: .85em;
+                letter-spacing: .1em;
                 text-transform: uppercase;
             }
 
-            table td:last-child {
-                border-bottom: 0;
+            @media screen and (max-width: 600px) {
+                table {
+                    border: 0;
+                }
+
+                table caption {
+                    font-size: 1.3em;
+                }
+
+                table thead {
+                    border: none;
+                    clip: rect(0 0 0 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                }
+
+                table tr {
+                    border-bottom: 3px solid #ddd;
+                    display: block;
+                    margin-bottom: .625em;
+                }
+
+                table td {
+                    border-bottom: 1px solid #ddd;
+                    display: block;
+                    font-size: .8em;
+                    text-align: right;
+                }
+
+                table td::before {
+
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+
+                table td:last-child {
+                    border-bottom: 0;
+                }
             }
-        }
 
-        .table-main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
+            .table-main {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
 
 
-    <%- include("nav") %>
         <div class="table-main">
             <table>
                 <caption>

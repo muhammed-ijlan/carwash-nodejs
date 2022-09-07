@@ -186,7 +186,7 @@ body.dark-theme {
     top: -100%;
     left: 0;
     right: 0;
-    margin: 0 10px;
+    margin: 0 auto;
     transition: 0.4s;
     border-radius: 2rem;
     z-index: var(--z-fixed);
@@ -201,17 +201,17 @@ body.dark-theme {
 }
 
 .nav__link,
-.nav__logo,
-.nav__toggle {
+.nav__logo {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
-  width: 150px;
+  width: 120px;
 }
 
 .nav__toggle {
+  position: absolute;
+  right: 50px;
   font-size: 1.3rem;
   cursor: pointer;
-  margin-left: 50px;
 }
 
 /* Show menu */
