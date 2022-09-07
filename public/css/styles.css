@@ -204,12 +204,12 @@ body.dark-theme {
 .nav__logo {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
-  width: 120px;
+  width: 100px;
 }
 
 .nav__toggle {
   position: absolute;
-  right: 50px;
+  right: 45px;
   font-size: 1.3rem;
   cursor: pointer;
 }
@@ -257,7 +257,6 @@ body.dark-theme {
 
 /*=============== BUTTONS ===============*/
 .button {
-  cursor: pointer;
   display: inline-block;
   background-color: var(--first-color);
   color: #1a1a1a;
