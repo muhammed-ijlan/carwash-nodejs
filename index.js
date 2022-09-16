@@ -271,12 +271,21 @@ app.get("/bookings", isLoggedIn, async (req, res) => {
 })
 
 
-app.get('/terms', function (req, res) {
+app.get('/terms&conditions', function (req, res) {
     res.render("terms")
 });
 app.get('/contact', function (req, res) {
     res.render("contact")
 });
+app.get("/refund-policy", (req, res) => {
+    res.render("return-policy")
+})
+app.get("/privacy-policy", (req, res) => {
+    res.render("privacy-policy")
+})
+app.get("/aboutus", (req, res) => {
+    res.render("aboutus")
+})
 
 
 //listen
