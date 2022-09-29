@@ -763,13 +763,13 @@
 
                 const options = {
                     "key": '<%= process.env.RAZORPAY_KEY_ID %>',
-                    "amount": "50000",
+                    "amount": "100",
                     "currency": "INR",
-                    "name": "SplashWash",
+                    "name": "Splashash",
                     "description": "Transaction for the Vehicle wash",
                     "image": "https://image.shutterstock.com/image-vector/splash-water-260nw-630001055.jpg",
                     "order_id": orderData.orderId,
-                    "callback_url": "http://localhost:4000/verification",
+                    "callback_url": `<%=process.env.SERVER_URL_DEV %>/verification`,
                     "theme": {
                         "color": "#3399cc"
                     }
