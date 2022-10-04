@@ -255,7 +255,6 @@ app.post("/book", isLoggedIn, async (req, res) => {
                     });
 
                     res.redirect("bookings")
-                    successPayment = false;
                 })
             }
         })
