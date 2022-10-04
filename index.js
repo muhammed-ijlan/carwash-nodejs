@@ -25,7 +25,6 @@ const instance = new Razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET
 })
 
-
 app.post('/create/orderId', (req, res) => {
     var options = {
         amount: 100,// amount in the smallest currency unit
@@ -37,11 +36,11 @@ app.post('/create/orderId', (req, res) => {
     })
 });
 
-var successPayment = false;
-app.post('/verification', ((req, res) => {
-    successPayment = true;
-    res.redirect("/book")
-}))
+// var successPayment = false;
+// app.post('/verification', ((req, res) => {
+//     successPayment = true;
+//     res.redirect("/book")
+// }))
 
 
 
@@ -100,12 +99,12 @@ function isLoggedOut(req, res, next) {
     res.redirect('/');
 }
 
-function isPaymentSuccess(req, res, next) {
-    if (successPayment) {
-        return next();
-    }
-    res.redirect("/services")
-}
+// function isPaymentSuccess(req, res, next) {
+//     if (successPayment) {
+//         return next();
+//     }
+//     res.redirect("/services")
+// }
 
 
 
@@ -194,12 +193,12 @@ app.get("/services", isLoggedIn, (req, res) => {
 
 //!! BOOK ROUTES
 
-app.get("/book", isLoggedIn, isPaymentSuccess, (req, res) => {
+app.get("/book", isLoggedIn, (req, res) => {
     res.render("book", { name: req.user.name, email: req.user.email })
 })
 
 // BOOK POST ROUTE
-app.post("/book", isPaymentSuccess, isLoggedIn, async (req, res) => {
+app.post("/book", isLoggedIn, async (req, res) => {
     try {
         User.findOne({ _id: req.user._id }).then((user) => {
             if (user) {
