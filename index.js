@@ -68,7 +68,7 @@ app.use(session({
 app.use(methodeOverride("_method"))
 
 //mongoose connection
-mongoose.connect(process.env.MONGO_URL_DEMO, {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log("DB connected"))
