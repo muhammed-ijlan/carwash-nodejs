@@ -227,6 +227,7 @@ app.post("/book", isLoggedIn, async (req, res) => {
                     <h3>Message</h3>
                     <p>${req.body.message}</p>
                     `
+                    console.log(req.body.vehicleType);
                     let transporter = nodemailer.createTransport({
                         host: 'smtp.gmail.com',
                         port: 587,
