@@ -204,7 +204,8 @@ body.dark-theme {
 .nav__logo {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
-  width: 100px;
+  width: 90px;
+  margin-top: 10px;
 }
 
 .nav__toggle {
