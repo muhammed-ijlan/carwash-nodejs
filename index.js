@@ -106,10 +106,6 @@ function isLoggedOut(req, res, next) {
 //     res.redirect("/services")
 // }
 
-
-
-///////////////////////////////////////////////
-
 const authenticateUser = async (email, password, done) => {
     const user = await User.findOne({ email })
     if (user == null) {
@@ -132,8 +128,8 @@ passport.use(new LocalStrategy({ usernameField: "email" }, authenticateUser))
 
 //**  ROUTES
 // !! USER ROUTES
-app.get("/", isLoggedIn, (req, res) => {
-    res.render("index", { name: req.user.name })
+app.get("/", (req, res) => {
+    res.render("index",)
 })
 
 //login Route
