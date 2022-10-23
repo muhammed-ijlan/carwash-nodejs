@@ -7,17 +7,26 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
 
 
 </head>
 <title>SplashWash : Book Your wash</title>
-<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+<!-- <link rel="icon" type="image/x-icon" href="/img/favicon.ico"> -->
+<link rel="apple-touch-icon" sizes="180x180" href="/img/flaticon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/flaticon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/flaticon/favicon-16x16.png">
+<link rel="manifest" href="/img/flaticon/site.webmanifest">
 
 <body>
     <%- include("nav") %>
         <style>
             section {
                 margin-top: 20px;
+                position: relative;
+
             }
 
             select {
@@ -27,8 +36,62 @@
                 border-radius: 5px;
                 height: 50px;
             }
+
+            /* POPUP */
+
+
+            .popup {
+                width: 400px;
+                background: white;
+                border-radius: 6px;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.1);
+                text-align: center;
+                padding: 0 30px 30px;
+                color: #333;
+                visibility: hidden;
+                transition: transform 0.4s, top 0.4s;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            .popup img {
+                width: 100px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                margin-top: -50px;
+                border-radius: 50%;
+            }
+
+            .popup h2 {
+                font-size: 38px;
+                font-weight: 500;
+                margin: 30px 0 10px;
+            }
+
+            .popup button {
+                width: 100%;
+                margin-top: 50px;
+                padding: 10px 0;
+                background: #6fd649;
+                color: #fff;
+                border: 0;
+                outline: none;
+                font-size: 18px;
+                border-radius: 4px;
+                cursor: pointer;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .open-popup {
+                visibility: visible;
+                top: 50%;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            /* ************************* */
         </style>
-        <section class="bookSection">
+        <section id="book-section" class="bookSection">
 
             <div class="book-container">
                 <div class="title">Book a Wash</div>
@@ -38,26 +101,26 @@
                         <div class="user-details">
                             <div class="input-box">
                                 <span class="details">Your Name</span>
-                                <input type="text" name="name" placeholder="Enter your name *" required
+                                <input type="text" name="name" required placeholder="Enter your name *"
                                     value="<%= name %>">
                             </div>
                             <div class="input-box">
                                 <span class="details">Vehicle Number</span>
-                                <input type="text" name="vehicleNumber" placeholder="Enter Vehicle Number *" required>
+                                <input type="text" name="vehicleNumber" required placeholder="Enter Vehicle Number *">
                             </div>
                             <div class="input-box">
                                 <span class="details">Email</span>
-                                <input type="email" name="email" placeholder="Enter your email *" required
+                                <input type="email" name="email" required placeholder="Enter your email *"
                                     value="<%= email %>">
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Your Location</span>
-                                <input type="text" name="location" placeholder="Enter your Location *" required>
+                                <input type="text" name="location" required placeholder="Enter your Location *">
                             </div>
                             <div class="input-box">
                                 <span class="details">Phone Number</span>
-                                <input type="text" name="number" placeholder="Enter your number *" required>
+                                <input type="text" name="number" required placeholder="Enter your number *">
                             </div>
                             <div class="input-box">
                                 <span class="details">Enter Your Message</span>
@@ -81,10 +144,22 @@
                                 </select>
                             </div>
                             <div class="book-btn">
-                                <button id="rzp-button1" type="submit">Book A Wash</button>
+                                <!-- Button trigger modal -->
+                                <button type="submit" class="book-button btn">Book A Wash
+                                </button>
+
+                                <!-- Modal -->
+
+
                             </div>
                     </form>
                 </div>
+            </div>
+            <div class="popup" id="popup">
+                <img src="img/tick.png">
+                <h2>Booking Successfull</h2>
+                <p>Thank you for choosing our service. Our agent will contact you soon. Happy washing!</p>
+                <button onclick="window.location='/bookings'">Done!</button>
             </div>
         </section>
 
@@ -92,8 +167,16 @@
             <script>
                 const form = document.getElementById("book-form")
                 form.addEventListener("submit", () => {
-                    alert("Booking Successfull!! \n Our Agent Will Contact You, Happy Washing!")
+                    openPopup();
+
                 })
+                let popup = document.getElementById("popup")
+                const section = document.getElementById("book-form")
+                function openPopup() {
+                    popup.classList.add("open-popup");
+                    section.style.filter = "blur(8px)"
+
+                }
             </script>
             <script src="js/main.js"></script>
 </body>

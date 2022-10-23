@@ -661,12 +661,6 @@ body.dark-theme {
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
 .bookSection {
   height: 90vh;
   display: flex;
@@ -783,7 +777,7 @@ form .book-btn {
   margin: 35px 0;
 }
 
-form .book-btn button {
+.book-button {
   text-align: center;
   height: 100%;
   width: 100%;

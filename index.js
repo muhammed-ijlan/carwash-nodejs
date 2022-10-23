@@ -251,7 +251,6 @@ app.post("/book", isLoggedIn, async (req, res) => {
                         console.log('Message sent: %s', info.messageId);
                     });
 
-                    res.redirect("bookings")
                 })
             }
         })
