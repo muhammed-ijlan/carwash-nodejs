@@ -283,7 +283,7 @@ app.get("/aboutus", (req, res) => {
 
 
 //listen
-const port = 4000;
+const port = 3000;
 app.listen(port, () => {
     console.log(`Backend connected on ${port}`);
 })
